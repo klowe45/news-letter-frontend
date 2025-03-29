@@ -1,4 +1,111 @@
+@font-face {
+  font-family: roboloSlab;
+  src: url(../../../vendor/fonts/RobotoSlab-Regular.ttf);
+}
+
 .header {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  background-image: url(../../assets/headerBackImg.jpeg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: multiply;
+}
+
+.header__navi {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.header__title {
+  margin: 30px auto 30px 104px;
+  max-height: 128px;
+  max-width: 608px;
+  color: #ffffff;
+  font-family: roboloSlab, "Times New Roman", Times, serif;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.header__home {
+  margin: 30px 42px 13px 0;
+  color: #ffffff;
+  font-family: roboloSlab, "Times New Roman", Times, serif;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.header__signin-btn {
+  margin: 19px 104px 13px 0;
+  width: 176px;
+  height: 48px;
+  border-radius: 100px;
+  border: 1px solid #ffffff;
+  background: transparent;
+  color: #ffffff;
+  font-family: roboloSlab, "Times New Roman", Times, serif;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.header__content {
+  display: flex;
+  flex-direction: column;
+  max-width: 608px;
+}
+
+.header__content-title {
+  margin: 80px 0 32px 0;
+  color: #ffffff;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 64px;
+  font-family: roboloSlab, "Times New Roman", Times, serif;
+}
+
+.header__content-description {
+  margin: 0 0 88px 0;
+  color: #ffffff;
+  font-weight: 400;
+  line-height: 24px;
+  font-family: roboloSlab, "Times New Roman", Times, serif;
+}
+
+.header__input {
+  margin-bottom: 80px;
+  width: 608px;
+  height: 64px;
+  border: 1px;
+  border-radius: 100px;
+  padding: 0;
+  padding-left: 30px;
+}
+
+.header__input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.header__search {
+  display: flex;
+}
+
+.header__input-btn {
+  width: 168px;
+  height: 64px;
+  background-color: #2f71e5;
+  color: #ffffff;
+  font-family: roboloSlab, "Times New Roman", Times, serif;
+  font-weight: 500;
+  line-height: 24px;
+  font-size: 18px;
+  border-radius: 100px;
+  border: none;
+  position: absolute;
+  right: 237px;
+  padding: 0;
 }
