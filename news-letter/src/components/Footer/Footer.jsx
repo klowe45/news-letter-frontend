@@ -6,7 +6,7 @@ function Footer({ handleGithubClick, handleLinkedinClick }) {
     <footer className="footer">
       <div className="footer__content">
         <p className="footer__info">&copy; 2025 News Letter Site</p>
-        <p className="footer__home-btn">Home</p>
+        <button className="footer__home-btn">Home</button>
         <p className="footer__school">TripleTen</p>
         <button
           className="footer__github-btn"

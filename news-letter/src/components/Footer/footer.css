@@ -31,6 +31,8 @@
   line-height: 24px;
   font-weight: 400px;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 
 .footer__school {
