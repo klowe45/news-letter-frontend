@@ -1,0 +1,66 @@
+@font-face {
+  font-family: roboloSlab;
+  src: url(../../../vendor/fonts/RobotoSlab-Regular.ttf);
+}
+
+.footer {
+  display: flex;
+}
+
+.footer__content {
+  display: flex;
+  align-items: center;
+  padding-top: 32px;
+  padding-bottom: 26px;
+  width: 100%;
+}
+
+.footer__info {
+  margin-left: 104px;
+  font-family: roboloSlab, "Times New Roman", Times, serif;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 400px;
+  opacity: 0.3;
+}
+
+.footer__home-btn {
+  margin: 0 40px 0 auto;
+  font-family: roboloSlab, "Times New Roman", Times, serif;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 400px;
+}
+
+.footer__school {
+  margin-right: 40px;
+  font-family: roboloSlab, "Times New Roman", Times, serif;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 400px;
+}
+
+.footer__github-btn {
+  width: 24px;
+  height: 24px;
+  margin-right: 26px;
+  padding: 0;
+  background-image: url(../../assets/github.png);
+  background-color: transparent;
+  border: none;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.footer__linkedin-btn {
+  width: 24px;
+  height: 24px;
+  margin-right: 105px;
+  padding: 0;
+  background-image: url(../../assets/linkedin.png);
+  background-color: transparent;
+  border: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
