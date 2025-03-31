@@ -105,7 +105,7 @@
   font-size: 18px;
   border-radius: 100px;
   border: none;
-  position: absolute;
-  right: 237px;
+  position: relative;
+  right: 125px;
   padding: 0;
 }
