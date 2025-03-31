@@ -18,8 +18,8 @@ function Header() {
         </p>
         <div className="header__search">
           <input className="header__input" placeholder="Enter topic"></input>
-          <button className="header__input-btn">Search</button>
         </div>
+        <button className="header__input-btn">Search</button>
       </div>
     </header>
   );
