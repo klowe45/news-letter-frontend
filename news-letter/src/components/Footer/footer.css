@@ -30,6 +30,7 @@
   font-size: 18px;
   line-height: 24px;
   font-weight: 400px;
+  cursor: pointer;
 }
 
 .footer__school {
@@ -50,6 +51,7 @@
   border: none;
   background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
 }
 
 .footer__linkedin-btn {
@@ -63,4 +65,5 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  cursor: pointer;
 }
