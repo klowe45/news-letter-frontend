@@ -4,13 +4,14 @@ import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
 import { useState } from "react";
 import SignupModal from "./components/SignupModal/SignupModal";
+import SigninModal from "./components/SigninModal/SigninModal";
 
 function App() {
   /***************************************************************************
    *                                  Modal                                  *
    **************************************************************************/
 
-  const [activeModal, SetActiveModal] = useState("signup");
+  const [activeModal, SetActiveModal] = useState("signin");
 
   const closeModal = () => {
     SetActiveModal("");
@@ -18,6 +19,10 @@ function App() {
 
   const handleSignupClick = () => {
     SetActiveModal("signup");
+  };
+
+  const handleSigninClick = () => {
+    SetActiveModal("signin");
   };
 
   /***************************************************************************
@@ -41,6 +46,7 @@ function App() {
         handleLinkedinClick={handleLinkedinClick}
       />
       <SignupModal closeModal={closeModal} activeModal={activeModal} />
+      <SigninModal closeModal={closeModal} activeModal={activeModal} />
     </div>
   );
 }
