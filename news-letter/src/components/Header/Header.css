@@ -32,12 +32,16 @@
   line-height: 24px;
 }
 
-.header__home {
+.header__home-btn {
   margin: 30px 42px 13px 0;
   color: #ffffff;
   font-family: roboloSlab, "Times New Roman", Times, serif;
   font-weight: 500;
   line-height: 24px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .header__signin-btn {
@@ -51,6 +55,7 @@
   font-family: roboloSlab, "Times New Roman", Times, serif;
   font-weight: 500;
   line-height: 24px;
+  cursor: pointer;
 }
 
 .header__content {
@@ -109,4 +114,9 @@
   padding: 0;
   left: 440px;
   bottom: 144px;
+  cursor: pointer;
+}
+
+.header__input-btn:hover {
+  background: #3473ff;
 }
