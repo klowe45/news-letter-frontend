@@ -1,0 +1,117 @@
+@font-face {
+  font-family: roboloSlab;
+  src: url(../../../vendor/fonts/RobotoSlab-Regular.ttf);
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal__close {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 265px;
+  right: 345px;
+  background-image: url("../../assets/modalClose.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.modal__opened {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 430px;
+  height: 458px;
+  background-color: #ffffff;
+  padding: 34px 36px 28px 36px;
+  border-radius: 15px;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+.modal__label {
+  color: #2f71e5;
+  width: 100%;
+}
+
+.modal__input {
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid;
+  margin-bottom: 31px;
+  padding: 9px 0 7px 0;
+}
+
+.modal__input::placeholder {
+  opacity: 60%;
+}
+
+.modal__title {
+  font-family: roboloSlab, "Times New Roman", Times, serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 100%;
+  margin: 0 0 22px 0;
+}
+
+.modal__other-button {
+  display: flex;
+  align-items: center;
+  margin: 0 auto 0 auto;
+}
+
+.modal__button-submit {
+  border: none;
+  border-radius: 30px;
+  background-color: #e6e8eb;
+  opacity: 40%;
+  width: 100%;
+  height: 64px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  padding: 0;
+}
+
+.modal__button-other {
+  border: none;
+  background-color: transparent;
+  color: #2f71e5;
+  padding-left: 5px;
+  height: 20px;
+}
+
+.modal__buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}

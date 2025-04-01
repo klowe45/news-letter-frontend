@@ -2,8 +2,24 @@ import "./App.css";
 import Header from "./components/Header/header";
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
+import { useState } from "react";
+import SignupModal from "./components/SignupModal/SignupModal";
 
 function App() {
+  /***************************************************************************
+   *                                  Modal                                  *
+   **************************************************************************/
+
+  const [activeModal, SetActiveModal] = useState("signup");
+
+  const closeModal = () => {
+    SetActiveModal("");
+  };
+
+  const handleSignupClick = () => {
+    SetActiveModal("signup");
+  };
+
   /***************************************************************************
    *                                  Footer                                 *
    **************************************************************************/
@@ -24,6 +40,7 @@ function App() {
         handleGithubClick={handleGithubClick}
         handleLinkedinClick={handleLinkedinClick}
       />
+      <SignupModal closeModal={closeModal} activeModal={activeModal} />
     </div>
   );
 }
