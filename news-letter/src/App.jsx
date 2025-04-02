@@ -11,7 +11,7 @@ function App() {
    *                                  Modal                                  *
    **************************************************************************/
 
-  const [activeModal, SetActiveModal] = useState("signin");
+  const [activeModal, SetActiveModal] = useState("signup");
 
   const closeModal = () => {
     SetActiveModal("");
@@ -38,13 +38,15 @@ function App() {
   };
 
   return (
-    <div className="page__content">
-      <Header />
-      <Main />
-      <Footer
-        handleGithubClick={handleGithubClick}
-        handleLinkedinClick={handleLinkedinClick}
-      />
+    <div className="page">
+      <div className="page__content">
+        <Header />
+        <Main />
+        <Footer
+          handleGithubClick={handleGithubClick}
+          handleLinkedinClick={handleLinkedinClick}
+        />
+      </div>
       <SignupModal closeModal={closeModal} activeModal={activeModal} />
       <SigninModal closeModal={closeModal} activeModal={activeModal} />
     </div>

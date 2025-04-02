@@ -23,20 +23,6 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal__close {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  top: 28px;
-  right: 20px;
-  background-image: url("../../assets/modalClose.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: transparent;
-  border: none;
-  padding: 0;
-}
-
 .modal__opened {
   display: flex;
   visibility: visible;
@@ -44,8 +30,6 @@
 }
 
 .modal__content {
-  flex-direction: column;
-  justify-content: center;
   width: 430px;
   background-color: #ffffff;
   border-radius: 15px;
@@ -59,6 +43,26 @@
   margin-right: 36px;
   align-items: flex-start;
   width: 358px;
+}
+
+.modal__title {
+  font-family: roboloSlab, "Times New Roman", Times, serif;
+  font-weight: 900;
+  font-size: 24px;
+  margin: 0 0 22px 0;
+}
+
+.modal__close {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  width: 40px;
+  height: 40px;
+  background-image: url("../../assets/modalClose.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  background-color: transparent;
 }
 
 .modal__label {
@@ -88,13 +92,6 @@
 
 .modal__input::placeholder {
   opacity: 60%;
-}
-
-.modal__title {
-  font-family: roboloSlab, "Times New Roman", Times, serif;
-  font-weight: 900;
-  font-size: 24px;
-  margin: 0 0 22px 0;
 }
 
 .modal__other-button {
