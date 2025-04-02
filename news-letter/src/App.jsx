@@ -2,27 +2,32 @@ import "./App.css";
 import Header from "./components/Header/header";
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
-import { useState } from "react";
+import { act, useState } from "react";
 import SignupModal from "./components/SignupModal/SignupModal";
 import SigninModal from "./components/SigninModal/SigninModal";
+import RegistrationSuccessModal from "./components/RegistrationSuccessModal";
 
 function App() {
   /***************************************************************************
    *                                  Modal                                  *
    **************************************************************************/
 
-  const [activeModal, SetActiveModal] = useState("signup");
+  const [activeModal, setActiveModal] = useState("regSuccess");
 
   const closeModal = () => {
-    SetActiveModal("");
+    setActiveModal("");
   };
 
   const handleSignupClick = () => {
-    SetActiveModal("signup");
+    setActiveModal("signup");
   };
 
   const handleSigninClick = () => {
-    SetActiveModal("signin");
+    setActiveModal("signin");
+  };
+
+  const handleRegistrationSuccessClick = () => {
+    setActiveModal("regSuccess");
   };
 
   /***************************************************************************
@@ -49,6 +54,10 @@ function App() {
       </div>
       <SignupModal closeModal={closeModal} activeModal={activeModal} />
       <SigninModal closeModal={closeModal} activeModal={activeModal} />
+      <RegistrationSuccessModal
+        closeModal={closeModal}
+        activeModal={activeModal}
+      />
     </div>
   );
 }
