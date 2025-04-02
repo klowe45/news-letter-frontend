@@ -11,6 +11,7 @@ function SignupModal({ activeModal, closeModal }) {
       buttonText={"Sign up"}
       buttonOther={"Sign in"}
       orText={"or"}
+      hiddenSubmitButton={false}
     >
       <label htmlFor="email-signup" className="modal__label">
         Email{""}

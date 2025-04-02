@@ -65,6 +65,7 @@
   background-size: contain;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .modal__label {
@@ -101,6 +102,7 @@
   align-items: center;
   margin: 0 auto 0 auto;
   height: 10px;
+  cursor: pointer;
 }
 
 .modal__button-submit {
@@ -113,6 +115,7 @@
   margin-top: 8px;
   margin-bottom: 16px;
   padding: 0;
+  cursor: pointer;
 }
 
 .modal__button-submit-disabled {
@@ -125,6 +128,7 @@
   margin-top: 8px;
   margin-bottom: 16px;
   padding: 0;
+  cursor: pointer;
 }
 
 .modal__button-other {
@@ -133,11 +137,12 @@
   color: #2f71e5;
   padding-left: 5px;
   height: 20px;
+  cursor: pointer;
 }
 
-.modal__button-other-shift {
-  display: flex;
+.modal__other-button-left {
   align-self: flex-start;
+  justify-content: flex-start;
 }
 
 .modal__buttons {
