@@ -10,6 +10,7 @@ function ModalWithForm({
   buttonOther,
   orText,
   hiddenSubmitButton = false,
+  toggleModal,
 }) {
   return (
     <div className={`modal ${isOpen && "modal__opened"}`}>
@@ -24,7 +25,7 @@ function ModalWithForm({
           {children}
           <div className="modal__buttons">
             {!hiddenSubmitButton && (
-              <button className="modal__button-submit" type="button">
+              <button className="modal__button-submit" type="submit">
                 {buttonText}
               </button>
             )}
@@ -34,7 +35,11 @@ function ModalWithForm({
               }`}
             >
               <p className="modal__or-text">{orText}</p>
-              <button type="button" className="modal__button-other">
+              <button
+                type="button"
+                className="modal__button-other"
+                onClick={toggleModal}
+              >
                 {buttonOther}
               </button>
             </div>

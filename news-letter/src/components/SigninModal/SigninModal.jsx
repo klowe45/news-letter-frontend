@@ -1,6 +1,10 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function SigninModal({ closeModal, activeModal }) {
+function SigninModal({ closeModal, activeModal, handleSignupClick }) {
+  const handleOrSignupClick = () => {
+    handleSignupClick();
+  };
+
   return (
     <ModalWithForm
       activeModal={activeModal}
@@ -10,6 +14,7 @@ function SigninModal({ closeModal, activeModal }) {
       buttonText={"Sign in"}
       buttonOther={"Sign up"}
       orText={"or"}
+      toggleModal={handleOrSignupClick}
     >
       <label htmlFor="email-signin" className="modal__label">
         Email{""}

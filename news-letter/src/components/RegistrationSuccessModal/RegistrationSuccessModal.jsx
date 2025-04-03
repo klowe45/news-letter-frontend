@@ -1,4 +1,4 @@
-import ModalWithForm from "./ModalWithForm/ModalWithForm";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function RegistrationSuccessModal({ closeModal, activeModal }) {
   return (
