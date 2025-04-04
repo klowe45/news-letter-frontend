@@ -15,49 +15,6 @@
   background-blend-mode: multiply;
 }
 
-.header__navi {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-.header__title {
-  margin: 30px auto 30px 104px;
-  max-height: 128px;
-  max-width: 608px;
-  color: #ffffff;
-  font-family: roboloSlab, "Times New Roman", Times, serif;
-  font-weight: 700;
-  line-height: 24px;
-}
-
-.header__home-btn {
-  margin: 30px 42px 13px 0;
-  color: #ffffff;
-  font-family: roboloSlab, "Times New Roman", Times, serif;
-  font-weight: 500;
-  line-height: 24px;
-  padding: 0;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-.header__signin-btn {
-  margin: 19px 104px 13px 0;
-  width: 176px;
-  height: 48px;
-  border-radius: 100px;
-  border: 1px solid #ffffff;
-  background: transparent;
-  color: #ffffff;
-  font-family: roboloSlab, "Times New Roman", Times, serif;
-  font-weight: 500;
-  line-height: 24px;
-  cursor: pointer;
-}
-
 .header__content {
   display: flex;
   flex-direction: column;
