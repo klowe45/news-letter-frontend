@@ -1,7 +1,7 @@
 import "./App.css";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Header from "./components/Header/header";
-import About from "./components/About/About";
+import Main from "./components/About/About";
 import Footer from "./components/Footer/Footer";
 import { act, useState } from "react";
 import SignupModal from "./components/SignupModal/SignupModal";
@@ -9,6 +9,7 @@ import SigninModal from "./components/SigninModal/SigninModal";
 import RegistrationSuccessModal from "./components/RegistrationSuccessModal/RegistrationSuccessModal";
 import * as auth from "./components/utils/auth";
 import UserContext from "../src/components/context/usercontext";
+import About from "./components/About/About";
 
 function App() {
   /***************************************************************************
@@ -117,6 +118,12 @@ function App() {
     }
   };
 
+  /**************************************************************************
+   *                                  Main                                  *
+   **************************************************************************/
+
+  const [isLoading, setIsLoading] = useState(false);
+
   /***************************************************************************
    *                                  Footer                                 *
    **************************************************************************/
@@ -141,8 +148,9 @@ function App() {
             handleSignOut={handleSignOut}
           />
           <Routes>
-            <Route path="/" element={<About />} />
+            <Route path="/" element={<Main />} />
           </Routes>
+          <About />
           <Footer
             handleGithubClick={handleGithubClick}
             handleLinkedinClick={handleLinkedinClick}

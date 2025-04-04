@@ -3,31 +3,31 @@
   src: url(../../../vendor/fonts/RobotoSlab-Regular.ttf);
 }
 
-.main {
+.about {
   display: flex;
 }
 
-.main__content {
+.about__content {
   display: flex;
   flex-direction: column;
   margin: 131px auto 0 0;
 }
 
-.main__author-img {
+.about__author-img {
   width: 464px;
   height: 464px;
   margin: 80px 56px 80px 104px;
   border-radius: 50%;
 }
 
-.main__title {
+.about__title {
   font-family: roboloSlab, "Times New Roman", Times, serif;
   font-weight: 400;
   line-height: 46px;
   font-size: 40px;
 }
 
-.main__description {
+.about__description {
   font-family: roboloSlab, "Times New Roman", Times, serif;
   font-weight: 400;
   line-height: 24px;
