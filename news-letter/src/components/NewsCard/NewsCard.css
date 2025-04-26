@@ -1,0 +1,119 @@
+.news__card-container {
+  width: 400px;
+  height: 576px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.news__cards-list_items {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 19px;
+  margin-bottom: 84px;
+  flex-wrap: wrap;
+}
+
+.news__card-btn {
+  display: flex;
+  position: absolute;
+}
+
+.news__card_save {
+  height: 40px;
+  width: 40px;
+  left: 342px;
+  top: 19px;
+  border: none;
+  border-radius: 10px;
+  background-image: url(/src/assets/save-icon-nonhover.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  padding: 0;
+}
+
+.news__card_save:hover {
+  height: 40px;
+  width: 40px;
+  left: 342px;
+  top: 19px;
+  border: none;
+  border-radius: 10px;
+  background-image: url("../../assets//save-icon-hover.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  padding: 0;
+}
+
+.news__card_saved {
+  background-image: url("../../assets/save-icon-saved.png");
+}
+
+.news__card-signin {
+  visibility: hidden;
+  border: none;
+  width: 182px;
+  height: 40px;
+  background-color: transparent;
+  position: absolute;
+  top: 24px;
+  right: 70px;
+  cursor: pointer;
+}
+
+.news__card-img {
+  height: 272px;
+  width: 100%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.news__card-text {
+  margin: 0 24px 0 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.news__card-date {
+  font-weight: 400;
+  font-size: 18px;
+  opacity: 40%;
+}
+
+.news__card-title {
+  font-weight: 400;
+  font-size: 26px;
+  text-decoration: none;
+  color: #000000;
+  overflow: hidden;
+  max-height: 60px;
+}
+
+.news__card-title:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.news__card-title_link {
+  text-decoration: none;
+}
+
+.news__card-description {
+  max-height: 110px;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+  margin: 0;
+}
+
+.news__card-source {
+  margin-top: auto;
+  font-weight: 700;
+  font-size: 16px;
+  opacity: 40%;
+}
