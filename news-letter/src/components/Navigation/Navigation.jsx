@@ -3,18 +3,13 @@ import "./Navigation.css";
 import NavLoggedOut from "../NavLoggedOut/NavLoggedOut";
 import NavLoggedIn from "../NavLoggedIn/NavLoggedIn";
 
-function Navigation({
-  handleSigninClick,
-  handleSignOut,
-  isLoggedIn,
-  currentUser,
-}) {
+function Navigation({ handleSigninClick, handleSignOut, isLoggedIn }) {
   const location = useLocation();
 
   return (
     <div className="header__navi">
       <p className="header__navi-title">News Explorer</p>
-      {!isLoggedIn ? (
+      {!isLoggedIn === true ? (
         <NavLoggedOut handleSigninClick={handleSigninClick} />
       ) : (
         <NavLoggedIn handleSignOut={handleSignOut} />

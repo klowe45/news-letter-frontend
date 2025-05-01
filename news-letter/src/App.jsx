@@ -40,8 +40,8 @@ function App() {
     setActiveModal("signin");
   };
 
-  const handleRegistrationSuccessClick = () => {
-    setActiveModal("regSuccess");
+  const handleSignupSuccessClick = () => {
+    setActiveModal("signupSuccess");
   };
 
   /***************************************************************************
@@ -51,7 +51,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({
     email: "",
     password: "",
-    username: "Kenneth",
+    username: "",
   });
 
   const userContext = {
@@ -59,8 +59,7 @@ function App() {
     setCurrentUser,
   };
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
   /***************************************************************************
@@ -96,8 +95,9 @@ function App() {
     auth
       .signIn(email, password)
       .then((data) => {
-        localStorage.setItem("jwt", data.token);
-        handleCheckToken(data.token);
+        console.log("Sign in success", data);
+        setToken(data.token);
+        handleTokenCheck(data.token);
         closeModal();
       })
       .catch((err) => console.error("Error handling signin submit", err));
@@ -106,8 +106,8 @@ function App() {
   const handleTokenCheck = (token) => {
     auth
       .checkToken(token)
-      .then((data) => {
-        setCurrentUser(data);
+      .then((res) => {
+        setCurrentUser(res.data);
         setIsLoggedIn(true);
       })
       .catch((err) => console.error("Error during token check", err));
@@ -118,9 +118,12 @@ function App() {
    **************************************************************************/
 
   const handleSignOut = () => {
-    localStorage.removeItem("token");
+    removeToken();
     setIsLoggedIn(false);
-    setCurrentUser(null);
+    setCurrentUser({
+      email: "",
+      username: "",
+    });
     navigate("/");
     console.log("logout clicked");
   };
@@ -152,7 +155,7 @@ function App() {
       return;
     }
     handleTokenCheck(token);
-  });
+  }, []);
 
   /**************************************************************************
    *                                  Main                                  *
@@ -168,6 +171,7 @@ function App() {
   const [userArticles, setUserArticles] = useState([]);
   const [newsData, setNewsData] = useState([]);
   const [currentKeyword, setCurrentKeyword] = useState("");
+  const [savedArticle, setSavedArticle] = useState([]);
 
   const handleSearchSubmit = () => {
     if (currentKeyword === "") {
@@ -190,44 +194,30 @@ function App() {
       });
   };
 
-  const handleSaveArcticle = (article) => {
-    const token = getToken();
-    const keyword = currentKeyword[0].toUpperCase() + currentKeyword.slice(1);
-    if (!token) return;
+  const handleSaveArticle = async (article) => {
+    try {
+      const token = getToken();
+      if (!token) throw new Error("No token found");
 
-    if (
-      userArticles.some((prevArticle) => {
-        return prevArticle.link === article.url;
-      })
-    ) {
-      const notSavedArticle = userArticles.find(
-        (prevArticle) => prevArticle.link === article.url
-      );
-      deleteArticles(notSavedArticle._id, token)
-        .then((data) => {
-          setUserArticles((prevArticles) =>
-            prevArticles.filter(article._id !== data.data._id)
-          );
-        })
-        .catch((err) => console.error(`Error while deleting Article`, err));
-      return;
+      const fakeId =
+        Date.now().toString() + Math.random().toString(36).substring(2, 9);
+
+      const articleWithId = {
+        ...article,
+        id: fakeId,
+      };
+
+      // Call saveArticles the way it expects: { article, token }
+      const updatedArticles = await saveArticles({
+        article: articleWithId,
+        token,
+      });
+
+      setSavedArticle(updatedArticles);
+      localStorage.setItem("saveArticles", JSON.stringify(updatedArticles));
+    } catch (err) {
+      console.error("Error saving article", err);
     }
-    saveArticles(
-      {
-        keyword: keyword,
-        title: article.title,
-        text: article.description,
-        date: article.publishedAt,
-        source: article.source.name,
-        link: article.url,
-        image: article.urlToImage,
-      },
-      token
-    )
-      .then((foundArticle) => {
-        setUserArticles((prevArticles) => [...prevArticles, foundArticle.data]);
-      })
-      .catch((err) => console.error(`Error while saving articles`, err));
   };
 
   /**************************************************************************
@@ -277,7 +267,7 @@ function App() {
                     isGoodNewsData={isGoodNewsData}
                     handleSignOut={handleSignOut}
                     isLoggedIn={isLoggedIn}
-                    handleSaveArcticle={handleSaveArcticle}
+                    handleSaveArticle={handleSaveArticle}
                     handleDeleteArticle={handleDeleteArticle}
                     handleSearchSubmit={handleSearchSubmit}
                     newsData={newsData}
@@ -317,6 +307,7 @@ function App() {
             closeModal={closeModal}
             activeModal={activeModal}
             handleSignupClick={handleSignupClick}
+            handleSigninSubmit={handleSigninSubmit}
           />
           <RegistrationSuccessModal
             closeModal={closeModal}

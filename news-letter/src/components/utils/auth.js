@@ -1,23 +1,64 @@
-export const signUp = async () => {
-  // localStorage.setItem( "user", { name, email, token: "fake-jwt-token" });
-  // return { message: "User registered successfully!" };
+export const signUp = async (email, password, username) => {
   return new Promise((resolve, reject) => {
-    resolve({ message: "User successfully registered!" });
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const existingUser = users.find((user) => user.email === email);
+
+    if (existingUser) {
+      reject({ message: "User already exists!" });
+    } else {
+      const token = Math.random().toString(36).substr(2);
+
+      const newUser = {
+        email,
+        password,
+        token,
+        username,
+      };
+
+      users.push(newUser);
+      localStorage.setItem("users", JSON.stringify(users));
+
+      resolve({ message: "User successfully registered!" });
+    }
   });
 };
 
-export const signIn = async () => {
-  // return { token: "fake-jwt-token", message: "Login successful!" };
+export const signIn = async (email, password) => {
   return new Promise((resolve, reject) => {
-    resolve({ token: "fake-jwt-token" });
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const user = users.find((currentUser) => currentUser.email === email);
+
+    if (!user) {
+      reject({ message: "Invalid email or password." });
+    } else {
+      resolve({
+        token: user.token,
+        username: user.username,
+        message: "Login successful!",
+      });
+    }
   });
 };
 
 export const checkToken = async (token) => {
-  // return token === "fake-jwt-token" ? { loggedIn: true } : { loggedIn: false };
-  return new Promise((resolve, reject) => {
-    resolve({
-      data: { name: "Kenneth", email: "fake@example,com", _id: "fake-id" },
-    });
+  return new Promise((resolve) => {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const user = users.find((u) => u.token === token);
+
+    if (user) {
+      resolve({
+        loggedIn: true,
+        data: {
+          email: user.email,
+          username: user.username,
+          _id: "fake-id", // Mock
+        },
+      });
+    } else {
+      resolve({ loggedIn: false });
+    }
   });
 };

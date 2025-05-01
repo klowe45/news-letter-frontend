@@ -33,6 +33,7 @@
   background-repeat: no-repeat;
   position: relative;
   padding: 0;
+  cursor: pointer;
 }
 
 .news__card_save:hover {
@@ -51,6 +52,7 @@
 
 .news__card_saved {
   background-image: url("../../assets/save-icon-saved.png");
+  cursor: pointer;
 }
 
 .news__card-signin {

@@ -1,8 +1,22 @@
+import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function SigninModal({ closeModal, activeModal, handleSignupClick }) {
+function SigninModal({
+  closeModal,
+  activeModal,
+  handleSignupClick,
+  handleSigninSubmit,
+}) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleOrSignupClick = () => {
     handleSignupClick();
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSigninSubmit({ email, password });
   };
 
   return (
@@ -15,6 +29,7 @@ function SigninModal({ closeModal, activeModal, handleSignupClick }) {
       buttonOther={"Sign up"}
       orText={"or"}
       toggleModal={handleOrSignupClick}
+      onSubmit={handleSubmit}
     >
       <label htmlFor="email-signin" className="modal__label">
         Email{""}

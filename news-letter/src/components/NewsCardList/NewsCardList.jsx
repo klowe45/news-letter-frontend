@@ -10,6 +10,7 @@ function NewsCardList({
   setActiveModal,
   isGoodNewsData,
   newsData,
+  handleSaveArticle,
 }) {
   const filteredNewsData = newsData.filter(
     (article) => article.title !== "[Removed"
@@ -70,6 +71,7 @@ function NewsCardList({
                   key={article.url}
                   article={article}
                   setActiveModal={setActiveModal}
+                  handleSaveArticle={handleSaveArticle}
                 />
               ))}
             </ul>

@@ -28,15 +28,17 @@ function NewsCard({
     day: "numeric",
   });
 
-  const isSaved =
-    userArticles?.some((existingArticle) => {
-      return existingArticle.link === article.url;
-    }) || false;
+  const isSaved = userArticles?.some((existingArticle) => {
+    return existingArticle.link === article.url;
+  });
 
-  const handleSaveClick = () => {
+  const handleSaveClick = async () => {
     if (isLoggedIn) {
-      isSaved === true ? setIsClicked(false) : setIsClicked(true);
-      handleSaveArticle(article);
+      if (!isSaved) {
+        await handleSaveArticle(article);
+        setIsClicked(true);
+        console.log("clicked");
+      }
       return;
     }
     setActiveModal("signin");
@@ -63,13 +65,13 @@ function NewsCard({
                   ? "news__card_save-active news__card_saved"
                   : "news__card_save"
               }
-              onClick={handleSaveArticle}
+              onClick={handleSaveClick}
             ></button>
           )}
           {location.pathname === "/saved-news" && (
             <button
               className="news__card-delete"
-              onClick={handleDeleteArticle}
+              onClick={handleDeleteClick}
             ></button>
           )}
         </div>

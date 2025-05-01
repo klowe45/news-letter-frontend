@@ -30,18 +30,15 @@ function deleteArticles(id, token) {
   }).then(checkResponse);
 }
 
-function saveArticles(
-  { keyword, title, text, date, source, link, image },
-  token
-) {
-  return fetch(`${newsApiBaseUrl}/articles/${id}`, {
+function saveArticles({ article, token }) {
+  return fetch(`${newsApiBaseUrl}/articles`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ keyword, title, text, date, source, link, image }),
+    body: JSON.stringify(article),
   }).then(checkResponse);
 }
 

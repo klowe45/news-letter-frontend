@@ -11,7 +11,7 @@ function Main({
   isGoodNewsData,
   handleSearchSubmit,
   handleSigninClick,
-  handleSaveArcticle,
+  handleSaveArticle,
   handleDeleteArticle,
   newsData,
   setCurrentKeyword,
@@ -30,7 +30,7 @@ function Main({
           isGoodNewsData={isGoodNewsData}
           isLoading={isLoading}
           isLoggedIn={isLoggedIn}
-          handleSaveArcticle={handleSaveArcticle}
+          handleSaveArticle={handleSaveArticle}
           handleDeleteArticle={handleDeleteArticle}
           setActiveModal={setActiveModal}
           newsData={newsData}

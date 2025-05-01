@@ -7,6 +7,11 @@ function NavLoggedIn({ handleSignOut }) {
   const { currentUser } = useContext(CurrentUserContext);
   const location = useLocation();
 
+  const onSignoutClick = (e) => {
+    e.preventDefault();
+    handleSignOut();
+  };
+
   return (
     <ul className="header__navi-list">
       <li className="header__navi-list_items">
@@ -35,7 +40,7 @@ function NavLoggedIn({ handleSignOut }) {
         <div className="header__navi-signout">
           <p className="header__navi-name"></p>
           <button
-            onClick={handleSignOut}
+            onClick={onSignoutClick}
             alt="Loggout"
             className="header__navi-loggout-btn"
           >
