@@ -4,23 +4,23 @@ import { UserArticleContext } from "../../context/UserArticleContext";
 import NewsCard from "../NewsCard/NewsCard";
 
 function SavedCardsArray({ handleDeleteArticle, handleSaveArticle }) {
-  const { savedArticles, setSavedArticles } = useContext(UserArticleContext);
+  const { savedArticles } = useContext(UserArticleContext);
 
   return (
-    <>
+    <div className="saved-news-container">
       <ul className="saved__cards">
         {savedArticles?.map((article) => {
           return (
             <NewsCard
               handleDeleteArticle={handleDeleteArticle}
               article={article}
-              key={article.image}
+              key={article._id || article.url} // Use a unique key for each article
               handleSaveArticle={handleSaveArticle}
             />
           );
         })}
       </ul>
-    </>
+    </div>
   );
 }
 

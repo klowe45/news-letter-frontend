@@ -6,9 +6,9 @@ import SearchForm from "../SearchForm/SearchForm";
 function Header({
   handleSigninClick,
   handleSignOut,
-  setCurrentKeyword,
   isLoggedIn,
   handleSearchSubmit,
+  setCurrentKeyword,
 }) {
   return (
     <header className="header">

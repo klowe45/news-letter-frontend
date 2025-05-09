@@ -159,6 +159,17 @@ function App() {
   const [currentKeyword, setCurrentKeyword] = useState("");
   const [savedArticles, setSavedArticles] = useState([]);
 
+  useEffect(() => {
+    const storedArticles = localStorage.getItem("savedArticles");
+    if (storedArticles) {
+      setSavedArticles(JSON.parse(storedArticles));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("savedArticles", JSON.stringify(savedArticles));
+  }, [savedArticles]);
+
   const handleSearchSubmit = () => {
     if (currentKeyword === "") {
       setIsGoodNewsData(true);
@@ -271,6 +282,7 @@ function App() {
                       handleDeleteArticle={handleDeleteArticle}
                       handleSaveArticle={handleSaveArticle}
                       savedArticles={savedArticles}
+                      currentKeyword={currentKeyword}
                     />
                   </ProtectedRoute>
                 }
