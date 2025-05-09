@@ -5,6 +5,7 @@
 
 .footer {
   display: flex;
+  background-color: #ffffff;
 }
 
 .footer__content {

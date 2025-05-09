@@ -5,11 +5,33 @@
   align-items: center;
 }
 
+.header__navi-black {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  align-items: center;
+  background-color: #ffffff;
+}
+
 .header__navi-title {
   margin: 30px auto 30px 104px;
   max-height: 128px;
   max-width: 608px;
   color: #ffffff;
+  font-family: roboloSlab, "Times New Roman", Times, serif;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.header__navi-title_black {
+  color: #000000;
+}
+
+.header__navi-title_save {
+  margin: 30px auto 30px 104px;
+  max-height: 128px;
+  max-width: 608px;
+  color: #000000;
   font-family: roboloSlab, "Times New Roman", Times, serif;
   font-weight: 700;
   line-height: 24px;
@@ -39,6 +61,11 @@
   border-bottom: 2px solid;
 }
 
+.header__navi-link_black {
+  color: #000000 !important;
+  border-color: #000000;
+}
+
 .header__navi-home-link {
   height: 83px;
 }
@@ -61,7 +88,7 @@
   cursor: pointer;
 }
 
-.header__navo-signup-btn {
+.header__navi-signup-btn {
   margin: 19px 104px 13px 0;
   width: 176px;
   height: 48px;
@@ -83,10 +110,16 @@
   background-color: transparent;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-right: 104px;
   color: #ffffff;
   padding-left: 20px;
   cursor: pointer;
+}
+
+.header__navi-loggout-btn_black {
+  color: #000000;
+  border-color: #000000;
 }
 
 .header__navi-loggout {
@@ -110,6 +143,7 @@
 
 .header__navi-list_items {
   list-style-type: none;
+  display: flex;
 }
 
 .header__navi-loggout-btn_img {

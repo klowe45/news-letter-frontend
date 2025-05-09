@@ -12,13 +12,13 @@ function NewsCard({
   handleDeleteArticle,
 }) {
   const location = useLocation();
-  const { userArticles } = useContext(UserArticleContext);
+  const { savedArticles, setSavedArticles } = useContext(UserArticleContext);
   const [isClicked, setIsClicked] = useState(false);
 
-  const source =
+  /*const source =
     location.pathname === "/"
-      ? article.source.name.toUpperCase().split(".")[0]
-      : article.source.toUpperCase().split(".")[0];
+      ? article.source?.name?.toUpperCase().split(".")[0]
+      : article.source?.toUpperCase().split(".")[0];
 
   const date = new Date(
     location.pathname === "/" ? article.publishedAt : article.date
@@ -26,19 +26,17 @@ function NewsCard({
     year: "numeric",
     month: "long",
     day: "numeric",
-  });
+  });*/
 
-  const isSaved = userArticles?.some((existingArticle) => {
+  const isSaved = savedArticles?.some((existingArticle) => {
     return existingArticle.link === article.url;
   });
 
   const handleSaveClick = async () => {
     if (isLoggedIn) {
-      if (!isSaved) {
-        await handleSaveArticle(article);
-        setIsClicked(true);
-        console.log("clicked");
-      }
+      isSaved === true ? setIsClicked(false) : setIsClicked(true);
+      handleSaveArticle(article);
+      console.log("Save Article btn clicked");
       return;
     }
     setActiveModal("signin");
@@ -82,7 +80,6 @@ function NewsCard({
         />
       </div>
       <div className="news__card-text">
-        <span className="news__card-date">{date}</span>
         <Link
           to={article.link}
           target="_blank"
@@ -93,10 +90,12 @@ function NewsCard({
         <p className="news__card-description">
           {location.pathname === "/" ? article.description : article.text}
         </p>
-        <p className="news__card-source">{source}</p>
       </div>
     </div>
   );
 }
 
 export default NewsCard;
+/* <p className="news__card-source">{source}</p> put this afternews card descrip
+<span className="news__card-date">{date}</span> put this after newscardtext
+*/

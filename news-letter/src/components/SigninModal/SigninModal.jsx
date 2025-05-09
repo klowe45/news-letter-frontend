@@ -10,6 +10,11 @@ function SigninModal({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const resetForm = () => {
+    setEmail("");
+    setPassword("");
+  };
+
   const handleOrSignupClick = () => {
     handleSignupClick();
   };
@@ -17,6 +22,7 @@ function SigninModal({
   const handleSubmit = (e) => {
     e.preventDefault();
     handleSigninSubmit({ email, password });
+    resetForm();
   };
 
   return (
@@ -39,6 +45,8 @@ function SigninModal({
           name="email"
           id="email-signin"
           placeholder="Enter email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         ></input>
       </label>
       <label htmlFor="password-signin" className="modal__label">
@@ -49,6 +57,8 @@ function SigninModal({
           name="password"
           id="password-signin"
           placeholder="Enter passwrod"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         ></input>
       </label>
     </ModalWithForm>

@@ -30,16 +30,24 @@ function deleteArticles(id, token) {
   }).then(checkResponse);
 }
 
-function saveArticles({ article, token }) {
-  return fetch(`${newsApiBaseUrl}/articles`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(article),
-  }).then(checkResponse);
+function saveArticles({ article, savedArticles }) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      let savedArticlesList =
+        JSON.parse(localStorage.getItem("savedArticles")) || [];
+
+      if (article.isSaved) {
+        const articleWithId = { ...article, _id: crypto.randomUUID() };
+        savedArticlesList = [...savedArticlesList, articleWithId];
+      } else {
+        savedArticlesList = savedArticlesList.filter(
+          (item) => item?._id !== article._id
+        );
+      }
+      localStorage.setItem("savedArticles", JSON.stringify(savedArticlesList));
+      resolve(savedArticlesList);
+    }, 500);
+  });
 }
 
 function getUser(token) {

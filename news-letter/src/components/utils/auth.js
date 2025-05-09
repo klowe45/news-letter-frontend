@@ -27,10 +27,12 @@ export const signUp = async (email, password, username) => {
 export const signIn = async (email, password) => {
   return new Promise((resolve, reject) => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
-
+    console.log("Stored users:", users);
+    console.log("Trying to sign in with:", { email, password });
     const user = users.find((currentUser) => currentUser.email === email);
-
     if (!user) {
+      reject({ message: "Invalid email or password." });
+    } else if (user.password !== password) {
       reject({ message: "Invalid email or password." });
     } else {
       resolve({

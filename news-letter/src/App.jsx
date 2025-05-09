@@ -103,16 +103,6 @@ function App() {
       .catch((err) => console.error("Error handling signin submit", err));
   };
 
-  const handleTokenCheck = (token) => {
-    auth
-      .checkToken(token)
-      .then((res) => {
-        setCurrentUser(res.data);
-        setIsLoggedIn(true);
-      })
-      .catch((err) => console.error("Error during token check", err));
-  };
-
   /***************************************************************************
    *                                  Sign out                               *
    **************************************************************************/
@@ -124,7 +114,7 @@ function App() {
       email: "",
       username: "",
     });
-    navigate("/");
+
     console.log("logout clicked");
   };
 
@@ -132,24 +122,20 @@ function App() {
    *                                  Token                                  *
    **************************************************************************/
 
-  const handleCheckToken = async () => {
-    try {
-      const token = localStorage.getItem("jwt");
-      if (!token) return;
-
-      const response = await auth.checkToken(token);
-      if (response.data) {
+  const handleTokenCheck = (token) => {
+    auth
+      .checkToken(token)
+      .then((res) => {
+        setCurrentUser(res.data);
         setIsLoggedIn(true);
-        const { name, email, _id } = response.data;
-        setCurrentUser({ name, email, _id });
-      }
-    } catch (err) {
-      console.error("Error with token", err);
-    }
+      })
+      .catch((err) => console.error("Error during token check", err));
   };
 
   useEffect(() => {
     const token = getToken();
+    console.log("Token on load:", token);
+
     if (!token || token === "undefined") {
       setIsAuth(true);
       return;
@@ -171,7 +157,7 @@ function App() {
   const [userArticles, setUserArticles] = useState([]);
   const [newsData, setNewsData] = useState([]);
   const [currentKeyword, setCurrentKeyword] = useState("");
-  const [savedArticle, setSavedArticle] = useState([]);
+  const [savedArticles, setSavedArticles] = useState([]);
 
   const handleSearchSubmit = () => {
     if (currentKeyword === "") {
@@ -196,25 +182,19 @@ function App() {
 
   const handleSaveArticle = async (article) => {
     try {
-      const token = getToken();
-      if (!token) throw new Error("No token found");
+      const alreadySaved = savedArticles.some(
+        (a) => a.url === article.url || a.link === article.url
+      );
+      if (alreadySaved) return;
 
-      const fakeId =
-        Date.now().toString() + Math.random().toString(36).substring(2, 9);
-
-      const articleWithId = {
-        ...article,
-        id: fakeId,
-      };
-
-      // Call saveArticles the way it expects: { article, token }
-      const updatedArticles = await saveArticles({
-        article: articleWithId,
-        token,
+      const newSavedArticles = [...savedArticles, article];
+      const savedArticle = await saveArticles({
+        article,
+        savedArticles: newSavedArticles,
       });
 
-      setSavedArticle(updatedArticles);
-      localStorage.setItem("saveArticles", JSON.stringify(updatedArticles));
+      setSavedArticles(newSavedArticles);
+      localStorage.setItem("savedArticles", JSON.stringify(newSavedArticles));
     } catch (err) {
       console.error("Error saving article", err);
     }
@@ -255,7 +235,9 @@ function App() {
   return (
     <div className="page">
       <CurrentUserContext.Provider value={userContext}>
-        <UserArticleContext.Provider value={userContext}>
+        <UserArticleContext.Provider
+          value={{ savedArticles, setSavedArticles }}
+        >
           <div className="page__content">
             <Routes>
               <Route
@@ -281,11 +263,14 @@ function App() {
                   <ProtectedRoute
                     isLoggedIn={isLoggedIn}
                     handleSignOut={handleSignOut}
+                    setActiveModal={setActiveModal}
                   >
                     <SavedNews
                       isLoggedIn={isLoggedIn}
                       handleSignOut={handleSignOut}
                       handleDeleteArticle={handleDeleteArticle}
+                      handleSaveArticle={handleSaveArticle}
+                      savedArticles={savedArticles}
                     />
                   </ProtectedRoute>
                 }
