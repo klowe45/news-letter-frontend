@@ -1,8 +1,7 @@
-import { React, useContext, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { useLocation, Link } from "react-router-dom";
 import "./NewsCard.css";
 import { UserArticleContext } from "../../context/UserArticleContext";
-import { Link } from "react-router-dom";
 
 function NewsCard({
   article,
@@ -12,31 +11,35 @@ function NewsCard({
   handleDeleteArticle,
 }) {
   const location = useLocation();
-  const { savedArticles, setSavedArticles } = useContext(UserArticleContext);
+  const { savedArticles } = useContext(UserArticleContext);
   const [isClicked, setIsClicked] = useState(false);
 
-  /*const source =
-    location.pathname === "/"
-      ? article.source?.name?.toUpperCase().split(".")[0]
-      : article.source?.toUpperCase().split(".")[0];
+  // Normalize article data
+  const title = article.title || article.image || "No Title";
+  const description = article.description || article.text || "No Description";
+  const image = article.urlToImage || article.image;
+  const link = article.url || article.link || "#";
+  const source =
+    article.source?.name?.toUpperCase().split(".")[0] ||
+    article.source?.toUpperCase().split(".")[0] ||
+    "Unknown Source";
+  const date = new Date(article.publishedAt || article.date).toLocaleString(
+    "default",
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }
+  );
 
-  const date = new Date(
-    location.pathname === "/" ? article.publishedAt : article.date
-  ).toLocaleString("default", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });*/
+  const isSaved = savedArticles?.some(
+    (existingArticle) => existingArticle.link === article.url
+  );
 
-  const isSaved = savedArticles?.some((existingArticle) => {
-    return existingArticle.link === article.url;
-  });
-
-  const handleSaveClick = async () => {
+  const handleSaveClick = () => {
     if (isLoggedIn) {
-      isSaved === true ? setIsClicked(false) : setIsClicked(true);
+      isSaved ? setIsClicked(false) : setIsClicked(true);
       handleSaveArticle(article);
-      console.log("Save Article btn clicked");
       return;
     }
     setActiveModal("signin");
@@ -48,14 +51,18 @@ function NewsCard({
 
   return (
     <div className="news__card-container">
-      <div className="news__card-img_content">
-        {location.pathname === "/saved-news" && (
-          <div className="news__card-keyword_img">{article.keyword}</div>
-        )}
+      <div className="news__card-img_content" style={{ position: "relative" }}>
+        {isLoggedIn &&
+          location.pathname === "/saved-news" &&
+          article.keyword && (
+            <div className="news__card-keyword">{article.keyword}</div>
+          )}
+
         <div className="news__card-btn">
           {!isLoggedIn && location.pathname === "/" && (
             <div className="news__card-signin">Sign in to save articles</div>
           )}
+
           {location.pathname === "/" && (
             <button
               className={
@@ -66,30 +73,28 @@ function NewsCard({
               onClick={handleSaveClick}
             ></button>
           )}
+
           {location.pathname === "/saved-news" && (
-            <button
-              className="news__card-delete"
-              onClick={handleDeleteClick}
-            ></button>
+            <div className="news__card-delete-wrapper">
+              <button
+                className="news__card-delete"
+                onClick={handleDeleteClick}
+              ></button>
+              <div className="news__card-delete_confirm">Remove from saved</div>
+            </div>
           )}
         </div>
-        <img
-          src={location.pathname === "/" ? article.urlToImage : article.image}
-          alt={article.title}
-          className="news__card-img"
-        />
+
+        <img src={image} alt={title} className="news__card-img" />
       </div>
+
       <div className="news__card-text">
-        <Link
-          to={article.link}
-          target="_blank"
-          className="news__card-title_link"
-        >
-          <h2 className="news__card-title">{article.title}</h2>
+        <span className="news__card-date">{date}</span>
+        <Link to={link} target="_blank" className="news__card-title_link">
+          <h2 className="news__card-title">{title}</h2>
         </Link>
-        <p className="news__card-description">
-          {location.pathname === "/" ? article.description : article.text}
-        </p>
+        <p className="news__card-description">{description}</p>
+        <p className="news__card-source">{source}</p>
       </div>
     </div>
   );

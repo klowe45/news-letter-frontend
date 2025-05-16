@@ -167,8 +167,24 @@ function App() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("savedArticles", JSON.stringify(savedArticles));
-  }, [savedArticles]);
+    const token = localStorage.getItem("jwt");
+    if (!token) {
+      return;
+    }
+    auth.checkToken(token).then((res) => {
+      setCurrentUser({
+        username: res.data.username,
+        _id: res.data._id,
+      });
+      getUserArticles(token).then((items) => {
+        setSavedArticles(items.reverse());
+      });
+    });
+  });
+
+  const uponSearch = (keyword) => {
+    setCurrentKeyword(keyword);
+  };
 
   const handleSearchSubmit = () => {
     if (currentKeyword === "") {
@@ -178,13 +194,15 @@ function App() {
     setIsLoading(true);
     setNewsData([]);
     setIsGoodNewsData(false);
-
+    ``;
     getNews(currentKeyword, API_KEY, getLastWeeksDate(), getLastWeeksDate())
       .then((data) => {
         console.log(data);
         setIsGoodNewsData(true);
         setNewsData(data.articles);
         setIsLoading(false);
+
+        localStorage.setItem("lastKeyword", currentKeyword);
       })
       .catch((err) => {
         console.error(err);
@@ -265,6 +283,8 @@ function App() {
                     handleSearchSubmit={handleSearchSubmit}
                     newsData={newsData}
                     setCurrentKeyword={setCurrentKeyword}
+                    uponSearch={uponSearch}
+                    savedArticles={savedArticles}
                   />
                 }
               ></Route>

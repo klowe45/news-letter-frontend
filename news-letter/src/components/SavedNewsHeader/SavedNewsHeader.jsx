@@ -2,7 +2,12 @@ import { useContext } from "react";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 import "../../components/SavedNewsHeader/SavedNewsHeader.css";
 
-const SavedNewsHeader = ({ isLoggedIn, SavedArticles, handleSignOut }) => {
+const SavedNewsHeader = ({
+  isLoggedIn,
+  SavedArticles,
+  handleSignOut,
+  currentKeyword,
+}) => {
   const { currentUser } = useContext(CurrentUserContext);
 
   return (
@@ -14,7 +19,12 @@ const SavedNewsHeader = ({ isLoggedIn, SavedArticles, handleSignOut }) => {
       </p>
       <p className="header__saved-keywords">
         By keywords:
-        <span className="header__saved-span"> Keyword goes here</span>
+        <span className="header__saved-span">
+          {" "}
+          {currentKeyword[0]}{" "}
+          {currentKeyword[1] ? `, ${currentKeyword[1]}` : ""}
+          {currentKeyword[2] ? `, and ${currentKeyword.length - 2} other` : ""}
+        </span>
       </p>
     </section>
   );

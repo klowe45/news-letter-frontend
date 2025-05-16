@@ -11,16 +11,18 @@ function NewsCardList({
   isGoodNewsData,
   newsData,
   handleSaveArticle,
+  // savedArticles, // Currently unused
 }) {
-  const filteredNewsData = newsData.filter(
-    (article) => article.title !== "[Removed"
-  );
+  const filteredNewsData = Array.isArray(newsData)
+    ? newsData.filter((article) => !article.title?.startsWith("[Removed"))
+    : [];
 
-  const [showThreeArticles, SetShowThreeArticles] = useState(3);
+  const [showThreeArticles, setShowThreeArticles] = useState(3);
+
   const postedNewsDataItems = filteredNewsData.slice(0, showThreeArticles);
 
   const handleClick = () => {
-    SetShowThreeArticles((prevState) => prevState + 3);
+    setShowThreeArticles((prevState) => prevState + 3);
   };
 
   const startingState = filteredNewsData.length === 0 && !isGoodNewsData;
@@ -30,7 +32,7 @@ function NewsCardList({
     <section
       className={
         startingState
-          ? "news__cards-lists news__cards-list-hidden"
+          ? "news__cards-list news__cards-list-hidden" // ✅ Fixed plural typo
           : "news__cards-list"
       }
     >
@@ -65,10 +67,10 @@ function NewsCardList({
           <h2 className="news__cards-list__title">Search results</h2>
           <div className="news__cards-list__container">
             <ul className="news__cards-list_items">
-              {postedNewsDataItems.map((article) => (
+              {postedNewsDataItems.map((article, index) => (
                 <NewsCard
                   isLoggedIn={isLoggedIn}
-                  key={article.url}
+                  key={article.url || index}
                   article={article}
                   setActiveModal={setActiveModal}
                   handleSaveArticle={handleSaveArticle}

@@ -9,6 +9,7 @@ function Header({
   isLoggedIn,
   handleSearchSubmit,
   setCurrentKeyword,
+  uponSearch,
 }) {
   return (
     <header className="header">
@@ -30,6 +31,7 @@ function Header({
       <SearchForm
         handleSearchSubmit={handleSearchSubmit}
         setCurrentKeyword={setCurrentKeyword}
+        uponSearch={uponSearch}
       />
     </header>
   );

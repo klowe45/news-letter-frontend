@@ -1,12 +1,17 @@
 import "../SearchForm/SearchForm.css";
 import { useState } from "react";
 
-function SearchForm({ handleSearchSubmit, setCurrentKeyword }) {
+function SearchForm({ handleSearchSubmit, setCurrentKeyword, uponSearch }) {
   const [value, setValue] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!value.trim()) {
+      formError("Keywords needed");
+      return;
+    }
     console.log("Form submitted", value);
     handleSearchSubmit(e);
+    uponSearch(value);
   };
   const handleChange = (e) => {
     const newValue = e.target.value;

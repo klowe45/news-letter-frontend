@@ -114,8 +114,69 @@
 }
 
 .news__card-source {
-  margin-top: auto;
   font-weight: 700;
   font-size: 16px;
   opacity: 40%;
+}
+
+.news__card-delete {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  border-radius: 8px;
+  border: none;
+  background-image: url(../../assets/card-delete.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.news__card-delete:hover {
+  background-image: url(../../assets/card-delete-hover.png);
+}
+
+.news__card-delete-wrapper {
+  position: absolute;
+  top: 15px;
+  left: 346px;
+}
+
+.news__card-delete_confirm {
+  background-color: #fff;
+  border-radius: 10px;
+  border-style: none;
+  color: #000;
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 40px;
+  text-align: center;
+  white-space: nowrap;
+  padding: 0 11px;
+  box-shadow: 0px 10px 22px 0px #3b4a741a;
+  visibility: hidden;
+  position: absolute;
+  top: 0px;
+  right: 45px;
+  z-index: 10;
+}
+
+.news__card-delete-wrapper:hover .news__card-delete_confirm {
+  visibility: visible;
+}
+
+.news__card-keyword {
+  background-color: #000000;
+  border-radius: 10px;
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+  padding: 8px 22px;
+  margin: 0;
+  top: 15px;
+  left: 15px;
+  z-index: 2;
 }
