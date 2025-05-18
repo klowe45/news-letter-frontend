@@ -1,7 +1,7 @@
 import "../SearchForm/SearchForm.css";
 import { useState } from "react";
 
-function SearchForm({ handleSearchSubmit, setCurrentKeyword, uponSearch }) {
+function SearchForm({ handleSearchSubmit }) {
   const [value, setValue] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -10,13 +10,11 @@ function SearchForm({ handleSearchSubmit, setCurrentKeyword, uponSearch }) {
       return;
     }
     console.log("Form submitted", value);
-    handleSearchSubmit(e);
-    uponSearch(value);
+    handleSearchSubmit(value);
   };
   const handleChange = (e) => {
     const newValue = e.target.value;
     setValue(newValue);
-    setCurrentKeyword(newValue);
   };
 
   return (

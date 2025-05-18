@@ -11,7 +11,7 @@ import { CurrentUserContext } from "./context/CurrentUserContext.js";
 import { getToken, setToken, removeToken } from "./components/utils/Token.js";
 import ProtectedRoute from "./components/ProtectedRoutes/ProtectedRoutes.jsx";
 import {
-  deleteArticles,
+  deleteArticle,
   saveArticles,
   getUser,
   getUserArticles,
@@ -60,7 +60,6 @@ function App() {
   };
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate();
 
   /***************************************************************************
    *                                  Signup                                 *
@@ -121,6 +120,7 @@ function App() {
   /**************************************************************************
    *                                  Token                                  *
    **************************************************************************/
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
 
   const handleTokenCheck = (token) => {
     auth
@@ -129,19 +129,29 @@ function App() {
         setCurrentUser(res.data);
         setIsLoggedIn(true);
       })
-      .catch((err) => console.error("Error during token check", err));
+      .catch((err) => {
+        console.error("Error during token check", err);
+        setIsLoggedIn(false);
+      })
+      .finally(() => {
+        setIsAuthChecked(true);
+      });
   };
 
   useEffect(() => {
     const token = getToken();
-    console.log("Token on load:", token);
-
     if (!token || token === "undefined") {
-      setIsAuth(true);
+      setIsAuthChecked(true);
       return;
     }
     handleTokenCheck(token);
   }, []);
+
+  useEffect(() => {
+    if (isAuthChecked && !isLoggedIn) {
+      setActiveModal("signin");
+    }
+  }, [isAuthChecked, isLoggedIn]);
 
   /**************************************************************************
    *                                  Main                                  *
@@ -156,13 +166,17 @@ function App() {
   const [isGoodNewsData, setIsGoodNewsData] = useState(false);
   const [userArticles, setUserArticles] = useState([]);
   const [newsData, setNewsData] = useState([]);
-  const [currentKeyword, setCurrentKeyword] = useState("");
+  const [keywords, setKeywords] = useState([]);
   const [savedArticles, setSavedArticles] = useState([]);
 
   useEffect(() => {
     const storedArticles = localStorage.getItem("savedArticles");
     if (storedArticles) {
       setSavedArticles(JSON.parse(storedArticles));
+    }
+    const storedKeywords = localStorage.getItem("keywords");
+    if (storedKeywords) {
+      setKeywords(JSON.parse(storedKeywords));
     }
   }, []);
 
@@ -177,32 +191,36 @@ function App() {
         _id: res.data._id,
       });
       getUserArticles(token).then((items) => {
+        console.log("Fetched saved articles:", items);
         setSavedArticles(items.reverse());
       });
+      console.log(savedArticles);
     });
-  });
+  }, []);
 
-  const uponSearch = (keyword) => {
-    setCurrentKeyword(keyword);
-  };
-
-  const handleSearchSubmit = () => {
-    if (currentKeyword === "") {
+  const handleSearchSubmit = (searchTerm) => {
+    if (!searchTerm) {
       setIsGoodNewsData(true);
       return;
     }
+
     setIsLoading(true);
     setNewsData([]);
     setIsGoodNewsData(false);
-    ``;
-    getNews(currentKeyword, API_KEY, getLastWeeksDate(), getLastWeeksDate())
+
+    getNews(searchTerm, API_KEY, getLastWeeksDate(), getTodaysDate())
       .then((data) => {
-        console.log(data);
         setIsGoodNewsData(true);
         setNewsData(data.articles);
         setIsLoading(false);
 
-        localStorage.setItem("lastKeyword", currentKeyword);
+        if (!keywords.includes(searchTerm)) {
+          const updatedKeywords = [...keywords, searchTerm];
+          setKeywords(updatedKeywords);
+          localStorage.setItem("keywords", JSON.stringify(updatedKeywords));
+        }
+
+        localStorage.setItem("lastKeyword", searchTerm);
       })
       .catch((err) => {
         console.error(err);
@@ -211,40 +229,78 @@ function App() {
 
   const handleSaveArticle = async (article) => {
     try {
+      const currentKeyword = localStorage.getItem("lastKeyword") || "";
+
+      const articleWithKeyword = {
+        ...article,
+        keyword: currentKeyword,
+        _id: Date.now().toString(),
+      };
+
       const alreadySaved = savedArticles.some(
-        (a) => a.url === article.url || a.link === article.url
+        (a) =>
+          a.url === articleWithKeyword.url || a.link === articleWithKeyword.url
       );
       if (alreadySaved) return;
 
-      const newSavedArticles = [...savedArticles, article];
-      const savedArticle = await saveArticles({
-        article,
+      const newSavedArticles = [...savedArticles, articleWithKeyword];
+
+      await saveArticles({
+        article: articleWithKeyword,
         savedArticles: newSavedArticles,
       });
 
       setSavedArticles(newSavedArticles);
       localStorage.setItem("savedArticles", JSON.stringify(newSavedArticles));
+
+      if (currentKeyword && !keywords.includes(currentKeyword)) {
+        const updatedKeywords = [...keywords, currentKeyword];
+        setKeywords(updatedKeywords);
+        localStorage.setItem("keywords", JSON.stringify(updatedKeywords));
+      }
     } catch (err) {
       console.error("Error saving article", err);
     }
   };
-
   /**************************************************************************
    *                             Delete Article                             *
    **************************************************************************/
 
   const handleDeleteArticle = (id) => {
-    const token = getToken();
-    if (!token) return;
+    if (!id) {
+      console.warn("Article missing _id, cannot delete.");
+      return;
+    }
 
-    deleteArticles(id, token)
+    deleteArticle(id)
       .then((data) => {
-        setUserArticles((prevArticles) =>
-          prevArticles.filter((article) => article._id !== data.data._id)
+        const deletedArticle = data.data;
+
+        const updatedArticles = savedArticles.filter(
+          (article) => article._id !== deletedArticle._id
         );
+
+        setSavedArticles(updatedArticles);
+        localStorage.setItem("savedArticles", JSON.stringify(updatedArticles));
+
+        const keywordToCheck =
+          deletedArticle.keyword || localStorage.getItem("lastKeyword");
+
+        const keywordStillUsed = updatedArticles.some(
+          (article) => article.keyword === keywordToCheck
+        );
+
+        if (
+          !keywordStillUsed &&
+          keywordToCheck &&
+          keywords.includes(keywordToCheck)
+        ) {
+          const updatedKeywords = keywords.filter((k) => k !== keywordToCheck);
+          setKeywords(updatedKeywords);
+          localStorage.setItem("keywords", JSON.stringify(updatedKeywords));
+        }
       })
-      .catch((err) => console.error(`Error while deleting Article`, err));
-    return;
+      .catch((err) => console.error(`Error while deleting article`, err));
   };
 
   /***************************************************************************
@@ -282,8 +338,6 @@ function App() {
                     handleDeleteArticle={handleDeleteArticle}
                     handleSearchSubmit={handleSearchSubmit}
                     newsData={newsData}
-                    setCurrentKeyword={setCurrentKeyword}
-                    uponSearch={uponSearch}
                     savedArticles={savedArticles}
                   />
                 }
@@ -295,6 +349,7 @@ function App() {
                     isLoggedIn={isLoggedIn}
                     handleSignOut={handleSignOut}
                     setActiveModal={setActiveModal}
+                    isAuthChecked={isAuthChecked}
                   >
                     <SavedNews
                       isLoggedIn={isLoggedIn}
@@ -302,7 +357,7 @@ function App() {
                       handleDeleteArticle={handleDeleteArticle}
                       handleSaveArticle={handleSaveArticle}
                       savedArticles={savedArticles}
-                      currentKeyword={currentKeyword}
+                      keywords={keywords}
                     />
                   </ProtectedRoute>
                 }

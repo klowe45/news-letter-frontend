@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import "./NewsCard.css";
 import { UserArticleContext } from "../../context/UserArticleContext";
+import { getUserArticles } from "../utils/api";
 
 function NewsCard({
   article,
@@ -13,8 +14,6 @@ function NewsCard({
   const location = useLocation();
   const { savedArticles } = useContext(UserArticleContext);
   const [isClicked, setIsClicked] = useState(false);
-
-  // Normalize article data
   const title = article.title || article.image || "No Title";
   const description = article.description || article.text || "No Description";
   const image = article.urlToImage || article.image;
@@ -46,17 +45,20 @@ function NewsCard({
   };
 
   const handleDeleteClick = () => {
+    console.log("Article passed to delete:", article);
+    if (!article._id) {
+      console.warn("Missing _id! Cannot delete this article.");
+      return;
+    }
     handleDeleteArticle(article._id);
   };
 
   return (
     <div className="news__card-container">
-      <div className="news__card-img_content" style={{ position: "relative" }}>
-        {isLoggedIn &&
-          location.pathname === "/saved-news" &&
-          article.keyword && (
-            <div className="news__card-keyword">{article.keyword}</div>
-          )}
+      <div className="news__card-img_content">
+        {location.pathname === "/saved-news" && article.keyword && (
+          <div className="news__card-keyword">{article.keyword}</div>
+        )}
 
         <div className="news__card-btn">
           {!isLoggedIn && location.pathname === "/" && (

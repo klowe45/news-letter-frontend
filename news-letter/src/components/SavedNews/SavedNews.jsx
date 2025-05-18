@@ -11,7 +11,8 @@ function SavedNews({
   handleSignOut,
   handleDeleteArticle,
   handleSaveArticle,
-  currentKeyword,
+  savedArticles,
+  keywords,
 }) {
   const currentUser = useContext(CurrentUserContext);
   const [userArticles, setUserArticles] = useState([]);
@@ -47,7 +48,8 @@ function SavedNews({
       <Navigation isLoggedIn={isLoggedIn} handleSignOut={handleSignOut} />
       <SavedNewsHeader
         isLoggedIn={isLoggedIn}
-        currentKeyword={currentKeyword}
+        savedArticles={savedArticles}
+        keywords={keywords}
       />
       <SavedCardsArray
         articles={userArticles}

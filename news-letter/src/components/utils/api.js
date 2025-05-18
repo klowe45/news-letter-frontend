@@ -55,16 +55,19 @@ function getUserArticles() {
   );
 }
 
-function deleteArticles(id, token) {
-  return fetch(`${newsApiBaseUrl}/articles/${id}`, {
-    method: "DELETE",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  }).then(checkResponse);
-}
+const deleteArticle = async (id) => {
+  const saved = JSON.parse(localStorage.getItem("savedArticles")) || [];
+  const articleToDelete = saved.find((article) => article._id === id);
+
+  if (!articleToDelete) {
+    throw new Error("Article not found for deletion");
+  }
+
+  const updated = saved.filter((article) => article._id !== id);
+  localStorage.setItem("savedArticles", JSON.stringify(updated));
+
+  return { data: articleToDelete };
+};
 
 function saveArticles({ article, savedArticles }) {
   return new Promise((resolve) => {
@@ -96,4 +99,4 @@ function getUser(token) {
     },
   }).then(checkResponse);
 }
-export { getUserArticles, deleteArticles, saveArticles, getUser };
+export { getUserArticles, deleteArticle, saveArticles, getUser };
