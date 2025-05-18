@@ -71,15 +71,22 @@ function App() {
       password,
       username,
     });
+
     auth
       .signUp(email, password, username)
       .then(() => {
-        handleSigninSubmit({ email, password });
-        closeModal();
+        return auth.signIn(email, password);
       })
-      .catch((err) => console.error("Error handling signup submit", err));
+      .then((data) => {
+        console.log("Sign in success after signup", data);
+        setToken(data.token);
+        handleTokenCheck(data.token);
+        setActiveModal("signupSuccess");
+      })
+      .catch((err) => {
+        console.error("Error handling signup submit", err);
+      });
   };
-
   /***************************************************************************
    *                                  Auth                                   *
    **************************************************************************/
@@ -147,12 +154,6 @@ function App() {
     handleTokenCheck(token);
   }, []);
 
-  useEffect(() => {
-    if (isAuthChecked && !isLoggedIn) {
-      setActiveModal("signin");
-    }
-  }, [isAuthChecked, isLoggedIn]);
-
   /**************************************************************************
    *                                  Main                                  *
    **************************************************************************/
@@ -191,10 +192,8 @@ function App() {
         _id: res.data._id,
       });
       getUserArticles(token).then((items) => {
-        console.log("Fetched saved articles:", items);
         setSavedArticles(items.reverse());
       });
-      console.log(savedArticles);
     });
   }, []);
 
@@ -381,7 +380,7 @@ function App() {
             closeModal={closeModal}
             activeModal={activeModal}
             handleSignupSubmit={handleSignupSubmit}
-            handleSigninClick={handleSigninClick}
+            handleSignupSuccessClick={handleSignupSuccessClick}
           />
           <SigninModal
             closeModal={closeModal}
@@ -390,6 +389,7 @@ function App() {
             handleSigninSubmit={handleSigninSubmit}
           />
           <RegistrationSuccessModal
+            handleSigninClick={handleSigninClick}
             closeModal={closeModal}
             activeModal={activeModal}
           />

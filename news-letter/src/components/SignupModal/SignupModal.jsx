@@ -5,40 +5,30 @@ import { useForm } from "../Hooks/useForm";
 function SignupModal({
   activeModal,
   closeModal,
-  handleSignupSubmit,
   handleSigninClick,
+  handleSignupSubmit,
 }) {
-  const { values, handleChange, setValues } = useForm({
-    email: "",
-    password: "",
-    username: "",
-  });
-
-  const handleResetInputs = () => {
-    setValues({
-      email: "",
-      password: "",
-      username: "",
-    });
-  };
-
-  useEffect(() => {
-    setValues({
-      email: "",
-      password: "",
-      username: "",
-    });
-  }, [activeModal, setValues]);
-
-  const onSignup = (e) => {
-    e.preventDefault();
-    handleSignupSubmit(values);
-    console.log("submitted");
-  };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
 
   const handleOrSigninClick = () => {
     handleSigninClick();
   };
+
+  const resetForm = () => {
+    setEmail("");
+    setPassword("");
+    setUsername("");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSignupSubmit({ email, password, username });
+    resetForm();
+  };
+
+  const isSubmitDisabled = email.trim() === "" || password.trim() === "";
 
   return (
     <ModalWithForm
@@ -49,9 +39,9 @@ function SignupModal({
       buttonText={"Sign up"}
       buttonOther={"Sign in"}
       orText={"or"}
-      hiddenSubmitButton={false}
-      onSubmit={onSignup}
+      onSubmit={handleSubmit}
       toggleModal={handleOrSigninClick}
+      isSubmitDisabled={isSubmitDisabled}
     >
       <label htmlFor="email-signup" className="modal__label">
         Email{""}
@@ -61,8 +51,8 @@ function SignupModal({
           name="email"
           id="email-signup"
           placeholder="Enter email"
-          value={values.email}
-          onChange={handleChange}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         ></input>
       </label>
       <label htmlFor="password-signup" className="modal__label">
@@ -73,8 +63,8 @@ function SignupModal({
           name="password"
           id="password-signup"
           placeholder="Enter passwrod"
-          value={values.password}
-          onChange={handleChange}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         ></input>
       </label>
       <label htmlFor="username-signup" className="modal__label">
@@ -85,8 +75,8 @@ function SignupModal({
           name="username"
           id="username-signup"
           placeholder="Enter username"
-          value={values.username}
-          onChange={handleChange}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         ></input>
       </label>
     </ModalWithForm>

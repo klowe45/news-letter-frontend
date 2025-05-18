@@ -150,3 +150,38 @@
   padding-right: 10px;
   margin-left: 15px;
 }
+
+@media screen and (max-width: 320px) {
+  .header__navi {
+    display: flex;
+    margin-right: 16px;
+    margin-top: 16px;
+  }
+  .header__navi-link {
+    display: none;
+  }
+
+  .header__navi-title {
+    margin: 0 auto 10px 10px;
+    max-height: 128px;
+    max-width: 608px;
+    color: #ffffff;
+    font-family: roboloSlab, "Times New Roman", Times, serif;
+    font-weight: 700;
+    line-height: 24px;
+  }
+
+  .nav__mobile-menu {
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .header__navi-loggout-btn {
+    display: none;
+  }
+
+  .header__navi-signin-btn {
+    display: none;
+  }
+}

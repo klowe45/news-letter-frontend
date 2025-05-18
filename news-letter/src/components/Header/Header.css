@@ -1,5 +1,5 @@
 @font-face {
-  font-family: roboloSlab;
+  font-family: "roboloSlab";
   src: url(../../../vendor/fonts/RobotoSlab-Regular.ttf);
 }
 
@@ -26,7 +26,7 @@
   font-size: 60px;
   font-weight: 400;
   line-height: 64px;
-  font-family: roboloSlab, "Times New Roman", Times, serif;
+  font-family: "roboloSlab", "Times New Roman", Times, serif;
 }
 
 .header__content-description {
@@ -34,5 +34,44 @@
   color: #ffffff;
   font-weight: 400;
   line-height: 24px;
-  font-family: roboloSlab, "Times New Roman", Times, serif;
+  font-size: 18px;
+  font-family: "roboloSlab", "Times New Roman", Times, serif;
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    padding: 15px;
+    margin: 0;
+    height: 536px;
+  }
+
+  .header__title {
+    font-weight: 700;
+    font-size: 16px;
+    margin-left: 16px;
+    margin-top: 30px;
+    margin-bottom: 16px;
+  }
+
+  .header__content {
+    height: 313px;
+  }
+
+  .header__content-title {
+    margin: 30px 0 32px 0;
+    color: #ffffff;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 40px;
+    font-family: "roboloSlab", "Times New Roman", Times, serif;
+  }
+
+  .header__content-description {
+    margin: 0 0 88px 0;
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    font-family: "roboloSlab", "Times New Roman", Times, serif;
+  }
 }

@@ -12,7 +12,10 @@ function About() {
           This block shows some random infor about the author you had picked for
           your news litter
         </p>
-        <p>Just another p tag for the formatting of this site.</p>
+        <p className="about__description">
+          Just another p tag for the formatting of this site. And other really
+          cool stuff.
+        </p>
       </div>
     </main>
   );

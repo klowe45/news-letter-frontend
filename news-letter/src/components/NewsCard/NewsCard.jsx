@@ -32,7 +32,10 @@ function NewsCard({
   );
 
   const isSaved = savedArticles?.some(
-    (existingArticle) => existingArticle.link === article.url
+    (existingArticle) =>
+      existingArticle.url === article.url ||
+      existingArticle.link === article.url ||
+      existingArticle.url === article.link
   );
 
   const handleSaveClick = () => {
@@ -57,23 +60,26 @@ function NewsCard({
     <div className="news__card-container">
       <div className="news__card-img_content">
         {location.pathname === "/saved-news" && article.keyword && (
-          <div className="news__card-keyword">{article.keyword}</div>
+          <div className="news__card-keyword">
+            {article.keyword.charAt(0).toUpperCase() + article.keyword.slice(1)}
+          </div>
         )}
 
         <div className="news__card-btn">
-          {!isLoggedIn && location.pathname === "/" && (
-            <div className="news__card-signin">Sign in to save articles</div>
-          )}
-
           {location.pathname === "/" && (
-            <button
-              className={
-                isSaved
-                  ? "news__card_save-active news__card_saved"
-                  : "news__card_save"
-              }
-              onClick={handleSaveClick}
-            ></button>
+            <div className="news__card-save-wrapper">
+              <button
+                className={`news__card_save ${
+                  isSaved ? "news__card_saved news__card_saved-checked" : ""
+                }`}
+                onClick={handleSaveClick}
+              ></button>
+              {!isLoggedIn && (
+                <div className="news__card-save_signin">
+                  Sign in to save articles
+                </div>
+              )}
+            </div>
           )}
 
           {location.pathname === "/saved-news" && (
@@ -103,6 +109,3 @@ function NewsCard({
 }
 
 export default NewsCard;
-/* <p className="news__card-source">{source}</p> put this afternews card descrip
-<span className="news__card-date">{date}</span> put this after newscardtext
-*/

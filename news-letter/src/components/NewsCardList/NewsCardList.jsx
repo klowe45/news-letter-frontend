@@ -79,7 +79,14 @@ function NewsCardList({
             </ul>
           </div>
           {postedNewsDataItems.length < filteredNewsData.length && (
-            <button onClick={handleClick} className="news__cards-list_more-btn">
+            <button
+              onClick={handleClick}
+              className={
+                isLoggedIn
+                  ? "news__cards-list_more-btn-signed_in"
+                  : "news__cards-list_more-btn-signed_out"
+              }
+            >
               Show More
             </button>
           )}

@@ -6,7 +6,7 @@ function RegistrationSuccessModal({ closeModal, activeModal }) {
       closeModal={closeModal}
       activeModal={activeModal}
       buttonOther={"Sign in"}
-      isOpen={activeModal === "regSuccess"}
+      isOpen={activeModal === "signupSuccess"}
       titleText={"Registration successfully completed!"}
       hiddenSubmitButton={true}
     ></ModalWithForm>
