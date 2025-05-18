@@ -1,7 +1,7 @@
 import React from "react";
 import "./Footer.css";
 
-function Footer({ handleGithubClick, handleLinkedinClick }) {
+function Footer({ handleGithubClick, handleFacebookClick }) {
   return (
     <footer className="footer">
       <div className="footer__content">
@@ -14,7 +14,7 @@ function Footer({ handleGithubClick, handleLinkedinClick }) {
         ></button>
         <button
           className="footer__linkedin-btn"
-          onClick={handleLinkedinClick}
+          onClick={handleFacebookClick}
         ></button>
       </div>
     </footer>

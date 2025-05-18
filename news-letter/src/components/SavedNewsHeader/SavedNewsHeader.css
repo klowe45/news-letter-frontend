@@ -9,12 +9,16 @@
   font-weight: 400;
   font-size: 18px;
   opacity: 50%;
+  margin-top: 40px;
+  margin-bottom: 28px;
 }
 
 .header__saved-count {
   font-size: 40px;
   font-weight: 400;
   line-height: 46px;
+  margin-top: 0;
+  margin-bottom: 30px;
 }
 
 .header__saved-keywords {
@@ -22,6 +26,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
+  margin-bottom: 30px;
 }
 
 .header__saved-span {

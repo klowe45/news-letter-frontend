@@ -214,8 +214,12 @@ function App() {
         setNewsData(data.articles);
         setIsLoading(false);
 
-        if (!keywords.includes(searchTerm)) {
-          const updatedKeywords = [...keywords, searchTerm];
+        const capitalizedKeyword =
+          searchTerm.charAt(0).toUpperCase() +
+          searchTerm.slice(1).toLowerCase();
+
+        if (!keywords.includes(capitalizedKeyword)) {
+          const updatedKeywords = [...keywords, capitalizedKeyword];
           setKeywords(updatedKeywords);
           localStorage.setItem("keywords", JSON.stringify(updatedKeywords));
         }
@@ -253,8 +257,12 @@ function App() {
       setSavedArticles(newSavedArticles);
       localStorage.setItem("savedArticles", JSON.stringify(newSavedArticles));
 
-      if (currentKeyword && !keywords.includes(currentKeyword)) {
-        const updatedKeywords = [...keywords, currentKeyword];
+      const capitalizedKeyword =
+        currentKeyword.charAt(0).toUpperCase() +
+        currentKeyword.slice(1).toLowerCase();
+
+      if (capitalizedKeyword && !keywords.includes(capitalizedKeyword)) {
+        const updatedKeywords = [...keywords, capitalizedKeyword];
         setKeywords(updatedKeywords);
         localStorage.setItem("keywords", JSON.stringify(updatedKeywords));
       }
@@ -311,8 +319,8 @@ function App() {
     window.open("https://github.com/klowe45");
   };
 
-  const handleLinkedinClick = () => {
-    window.open("https://www.linkedin.com/in/kenneth-lowe45");
+  const handleFacebookClick = () => {
+    window.open("https://www.facebook.com/");
   };
 
   /**************************************************************************/
@@ -366,7 +374,7 @@ function App() {
 
             <Footer
               handleGithubClick={handleGithubClick}
-              handleLinkedinClick={handleLinkedinClick}
+              handleFacebookClick={handleFacebookClick}
             />
           </div>
           <SignupModal
