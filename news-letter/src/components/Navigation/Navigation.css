@@ -43,6 +43,21 @@
   cursor: pointer;
 }
 
+.header__navi-signin-btn {
+  width: 176px;
+  height: 48px;
+  border-radius: 100px;
+  border: 1px solid #fff;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 104px;
+  color: #ffffff;
+  cursor: pointer;
+  justify-content: center;
+}
+
 .header__navi-loggout-btn_black {
   color: #000000;
   border-color: #000000;
