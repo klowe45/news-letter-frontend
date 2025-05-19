@@ -11,7 +11,6 @@ function NewsCardList({
   isGoodNewsData,
   newsData,
   handleSaveArticle,
-  // savedArticles, // Currently unused
 }) {
   const filteredNewsData = Array.isArray(newsData)
     ? newsData.filter((article) => !article.title?.startsWith("[Removed"))
@@ -32,7 +31,7 @@ function NewsCardList({
     <section
       className={
         startingState
-          ? "news__cards-list news__cards-list-hidden" // ✅ Fixed plural typo
+          ? "news__cards-list news__cards-list-hidden"
           : "news__cards-list"
       }
     >

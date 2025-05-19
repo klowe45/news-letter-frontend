@@ -157,3 +157,39 @@
   width: 100%;
   margin-bottom: 28px;
 }
+
+@media screen and (max-width: 320px) {
+  .modal__content {
+    width: 320px;
+    height: 560px;
+    top: -208px;
+    position: relative;
+    z-index: 1000;
+  }
+
+  .modal__form {
+    margin: 0;
+    padding: 16px;
+  }
+
+  .modal__input {
+    width: 80%;
+  }
+
+  .modal__button-submit-disabled {
+    width: 80%;
+  }
+
+  .modal__button-submit {
+    width: 80%;
+  }
+
+  .modal__button-other {
+    margin-right: 65px;
+  }
+
+  .modal__close {
+    top: -40px;
+    right: 6px;
+  }
+}

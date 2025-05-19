@@ -6,6 +6,17 @@
   flex-direction: row;
   gap: 16px;
   list-style-type: none;
+  padding: 32px 16px 62px 104px;
+}
 
-  padding: 62px 64px;
+@media screen and (max-width: 320px) {
+  .saved__cards {
+    padding: 0;
+    width: 320px;
+  }
+
+  .saved-news-container {
+    width: 280px;
+    margin: 15px 10px 15px 10px;
+  }
 }

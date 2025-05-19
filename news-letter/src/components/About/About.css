@@ -40,6 +40,8 @@
     display: flex;
     flex-direction: column;
     background-color: #ffffff;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   .about__content {

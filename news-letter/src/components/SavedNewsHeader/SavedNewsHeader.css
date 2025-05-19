@@ -4,6 +4,7 @@
   background-color: #ffffff;
   padding-left: 104px;
   padding-right: 748px;
+  width: 100%;
 }
 
 .header__saved-title {
@@ -20,6 +21,7 @@
   line-height: 46px;
   margin-top: 0;
   margin-bottom: 30px;
+  width: 400px;
 }
 
 .header__saved-keywords {
@@ -36,4 +38,22 @@
   font-size: 18px;
   line-height: 24px;
   margin-bottom: 56px;
+}
+
+@media screen and (max-width: 320px) {
+  .header__saved {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .header__saved-title {
+    margin: 10px 0 28px 0;
+  }
+
+  .header__saved-count {
+    width: 380px;
+  }
 }

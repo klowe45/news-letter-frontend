@@ -15,8 +15,9 @@ function Main({
   handleDeleteArticle,
   newsData,
   setCurrentKeyword,
-
   savedArticles,
+  isSigninModalOpen,
+  handleSignupClick,
 }) {
   return (
     <>
@@ -26,6 +27,8 @@ function Main({
         handleSearchSubmit={handleSearchSubmit}
         handleSigninClick={handleSigninClick}
         setCurrentKeyword={setCurrentKeyword}
+        isSigninModalOpen={isSigninModalOpen}
+        handleSignupClick={handleSignupClick}
       />
       <main className="main">
         <NewsCardList

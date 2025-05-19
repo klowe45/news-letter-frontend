@@ -17,7 +17,7 @@
   line-height: 22px;
   height: 64px;
   width: 100%;
-  padding: 0 190px 0 24px;
+  padding: 0px 0 0 24px;
   border: none;
   border-radius: 100px;
   box-sizing: border-box;
@@ -83,8 +83,7 @@
     display: flex;
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
-    margin-bottom: 30px;
+    width: 95%;
   }
 
   .search__container {

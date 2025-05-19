@@ -2,30 +2,77 @@ import { useLocation } from "react-router-dom";
 import "./Navigation.css";
 import NavLoggedOut from "../NavLoggedOut/NavLoggedOut";
 import NavLoggedIn from "../NavLoggedIn/NavLoggedIn";
+import { useState } from "react";
+import MobileDropDown from "../mobileDropDown/mobileDropDown";
 
-function Navigation({ handleSigninClick, handleSignOut, isLoggedIn }) {
+function Navigation({
+  handleSigninClick,
+  handleSignOut,
+  isLoggedIn,
+  isSigninModalOpen,
+  handleSignupClick,
+}) {
   const location = useLocation();
-  const onSavedPageLocation = location.pathname === "/saved-news";
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const mobileMenuClick = () => {
+    setMobileMenuOpen((prevState) => !prevState);
+  };
+
+  const handleSigninFromMenu = () => {
+    setMobileMenuOpen(false);
+    handleSigninClick();
+  };
+
+  const isSavedNews = location.pathname === "/saved-news";
 
   return (
-    <div
-      className={`header__navi ${
-        onSavedPageLocation ? "header__navi-black" : ""
-      }`}
-    >
-      <p
-        className={`header__navi-title ${
-          onSavedPageLocation ? "header__navi-title_black" : ""
-        }`}
+    <>
+      <div
+        className={`header__navi
+    ${isSavedNews ? "header__navi-black" : ""}
+    ${mobileMenuOpen ? "header__navi--mobile-open" : ""}
+  `}
       >
-        News Explorer
-      </p>
-      {!isLoggedIn ? (
-        <NavLoggedOut handleSigninClick={handleSigninClick} />
-      ) : (
-        <NavLoggedIn handleSignOut={handleSignOut} />
+        <p
+          className={`header__navi-title ${
+            isSavedNews ? "header__navi-title_black" : ""
+          }`}
+        >
+          News Explorer
+        </p>
+
+        {!isSigninModalOpen && (
+          <button
+            className={
+              mobileMenuOpen
+                ? "header__navi-mobile-button_x"
+                : isSavedNews
+                ? "header__navi-mobile-button-black"
+                : "header__navi-mobile-button"
+            }
+            onClick={mobileMenuClick}
+          ></button>
+        )}
+
+        {!isLoggedIn ? (
+          <NavLoggedOut handleSigninClick={handleSigninClick} />
+        ) : (
+          <NavLoggedIn handleSignOut={handleSignOut} />
+        )}
+      </div>
+
+      {mobileMenuOpen && (
+        <>
+          <div className="mobile__overlay" onClick={mobileMenuClick}></div>
+
+          <MobileDropDown
+            handleSigninFromMenu={handleSigninFromMenu}
+            isLoggedIn={isLoggedIn}
+          />
+        </>
       )}
-    </div>
+    </>
   );
 }
 

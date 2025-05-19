@@ -10,6 +10,8 @@ function Header({
   handleSearchSubmit,
   setCurrentKeyword,
   uponSearch,
+  isSigninModalOpen,
+  handleSignupClick,
 }) {
   return (
     <header className="header">
@@ -18,6 +20,8 @@ function Header({
           handleSigninClick={handleSigninClick}
           handleSignOut={handleSignOut}
           isLoggedIn={isLoggedIn}
+          isSigninModalOpen={isSigninModalOpen}
+          handleSignupClick={handleSignupClick}
         />
       </div>
       <div className="header__content">

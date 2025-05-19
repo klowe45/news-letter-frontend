@@ -20,19 +20,18 @@ function NavLoggedIn({ handleSignOut }) {
         <Link
           to="/"
           className={`header__navi-link ${
-            location.pathname === "/" ? "active header__navi-home-link" : ""
+            location.pathname === "/" ? "active" : ""
           } ${onSavedPageLocation ? "header__navi-link_black" : ""}`}
         >
           Home
         </Link>
       </li>
+
       <li className="header__navi-list_items">
         <Link
           to="/saved-news"
           className={`header__navi-link ${
-            location.pathname === "/saved-news"
-              ? "active header__navi-saved-news"
-              : ""
+            location.pathname === "/saved-news" ? "active" : ""
           } ${onSavedPageLocation ? "header__navi-link_black" : ""}`}
         >
           Saved articles

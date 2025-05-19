@@ -1,0 +1,49 @@
+.mobile__drop_down {
+  position: absolute;
+  background-color: #1a1b22;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  z-index: 1000;
+  width: 320px;
+}
+
+.mobile__drop_down-home {
+  font-size: 18px;
+  line-height: 56px;
+  font-weight: 500;
+  margin: 22px auto 0 16px;
+  color: #ffffff;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.mobile__drop_down-btn {
+  font-size: 18px;
+  line-height: 56px;
+  font-weight: 500;
+  margin: 22px 16px 24px 16px;
+  color: #ffffff;
+  background: none;
+  border: 1px solid #ffffff;
+  text-align: center;
+  cursor: pointer;
+  width: 288px;
+  height: 56px;
+  border-radius: 50px;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

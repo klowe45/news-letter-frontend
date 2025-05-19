@@ -20,6 +20,7 @@ import { API_KEY, getNews } from "./components/utils/newsApi.js";
 import { getLastWeeksDate, getTodaysDate } from "./components/utils/Dates.js";
 import SavedNews from "./components/SavedNews/SavedNews.jsx";
 import { UserArticleContext } from "./context/UserArticleContext.js";
+import MobileDropDown from "./components/mobileDropDown/mobileDropDown.jsx";
 
 function App() {
   /***************************************************************************
@@ -27,9 +28,11 @@ function App() {
    **************************************************************************/
 
   const [activeModal, setActiveModal] = useState("");
+  const [isSigninModalOpen, setIsSigninModalOpen] = useState(false);
 
   const closeModal = () => {
     setActiveModal("");
+    setIsSigninModalOpen(false);
   };
 
   const handleSignupClick = () => {
@@ -38,12 +41,20 @@ function App() {
 
   const handleSigninClick = () => {
     setActiveModal("signin");
+    setIsSigninModalOpen(true);
   };
 
   const handleSignupSuccessClick = () => {
     setActiveModal("signupSuccess");
   };
 
+  const openSigninModal = () => {
+    setIsSigninModalOpen(true);
+  };
+
+  const closeSigninModal = () => {
+    setIsSigninModalOpen(false);
+  };
   /***************************************************************************
    *                                  USER                                   *
    **************************************************************************/
@@ -346,6 +357,9 @@ function App() {
                     handleSearchSubmit={handleSearchSubmit}
                     newsData={newsData}
                     savedArticles={savedArticles}
+                    isSigninModalOpen={isSigninModalOpen}
+                    closeModal={closeModal}
+                    handleSignupClick={handleSignupClick}
                   />
                 }
               ></Route>
@@ -380,6 +394,7 @@ function App() {
             closeModal={closeModal}
             activeModal={activeModal}
             handleSignupSubmit={handleSignupSubmit}
+            handleSigninClick={handleSigninClick}
             handleSignupSuccessClick={handleSignupSuccessClick}
           />
           <SigninModal

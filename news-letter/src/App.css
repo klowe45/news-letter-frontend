@@ -1,10 +1,23 @@
 .page {
   background-color: #f3f3f3;
+  max-width: 1440px;
+  min-height: 100vh;
 }
 
 .page__content {
-  max-width: 1360px;
+  width: 1440px;
   margin: 0 auto;
   padding: 20px;
   min-height: 100vh;
+}
+
+@media screen and (max-width: 320px) {
+  .page {
+    width: 320px;
+  }
+
+  .page__content {
+    padding: 0;
+    width: 320px;
+  }
 }

@@ -38,9 +38,14 @@
   font-family: "roboloSlab", "Times New Roman", Times, serif;
 }
 
+@media screen and (max-width: 768px) {
+  .header {
+    max-width: 768px;
+  }
+}
+
 @media screen and (max-width: 320px) {
   .header {
-    padding: 15px;
     margin: 0;
     height: 536px;
   }
@@ -54,7 +59,8 @@
   }
 
   .header__content {
-    height: 313px;
+    height: 288px;
+    padding: 0 10px 10px 10px;
   }
 
   .header__content-title {
