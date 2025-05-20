@@ -1,11 +1,11 @@
 @font-face {
   font-family: roboloSlab;
-  src: url(../../../vendor/fonts/RobotoSlab-Regular.ttf);
+  src: url(../../../vendor/fonts/roboto-400-regular.woff);
 }
 
 @font-face {
-  font-family: inter;
-  src: url(../../../vendor/fonts/Inter-VariableFont_opsz\wght.ttf);
+  font-family: roboloSlab;
+  src: url(../../../vendor/fonts/roboto-400-regular.woff);
 }
 
 .modal {

@@ -221,7 +221,8 @@ function App() {
     getNews(searchTerm, API_KEY, getLastWeeksDate(), getTodaysDate())
       .then((data) => {
         setIsGoodNewsData(true);
-        setNewsData(data.articles);
+        setNewsData(data.articles.slice(0, 50));
+        setNewsData(articles);
         setIsLoading(false);
 
         const capitalizedKeyword =
@@ -235,9 +236,11 @@ function App() {
         }
 
         localStorage.setItem("lastKeyword", searchTerm);
+        localStorage.setItem("savedArticles", JSON.stringify(articles));
       })
       .catch((err) => {
         console.error(err);
+        setIsLoading(false);
       });
   };
 
@@ -326,11 +329,35 @@ function App() {
    **************************************************************************/
 
   const handleGithubClick = () => {
-    window.open("https://github.com/klowe45");
+    try {
+      const newWindow = window.open("https://github.com/klowe45", "_blank");
+      if (
+        !newWindow ||
+        newWindow.closed ||
+        typeof newWindow.closed === "undefined"
+      ) {
+        throw new Error("Popup blocked or failed to open");
+      }
+    } catch (error) {
+      console.error("Failed to open GitHub:", error);
+      alert("Unable to open GitHub. Please check your browser settings.");
+    }
   };
 
   const handleFacebookClick = () => {
-    window.open("https://www.facebook.com/");
+    try {
+      const newWindow = window.open("https://www.facebook.com/", "_blank");
+      if (
+        !newWindow ||
+        newWindow.closed ||
+        typeof newWindow.closed === "undefined"
+      ) {
+        throw new Error("Popup blocked or failed to open");
+      }
+    } catch (error) {
+      console.error("Failed to open Facebook:", error);
+      alert("Unable to open Facebook. Please check your browser settings.");
+    }
   };
 
   /**************************************************************************/
