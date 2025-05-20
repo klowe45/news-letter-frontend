@@ -9,7 +9,7 @@ export function checkResponse(res) {
 }
 
 function getUserArticles() {
-  return new Promise((resolve, reject) =>
+  return new Promise((resolve) =>
     resolve([
       {
         _id: "89eb9aa4101108a7960bf765",
@@ -69,7 +69,7 @@ const deleteArticle = async (id) => {
   return { data: articleToDelete };
 };
 
-function saveArticles({ article, savedArticles }) {
+function saveArticles({ article }) {
   return new Promise((resolve) => {
     setTimeout(() => {
       let savedArticlesList =
