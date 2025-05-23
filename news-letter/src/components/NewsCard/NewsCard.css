@@ -10,7 +10,7 @@
 
 .news__card-btn {
   display: flex;
-  position: relative;
+  position: absolute;
 }
 
 .news__card-save {
@@ -272,7 +272,7 @@
   }
 
   .news__card-save-signin {
-    right: -180px;
+    right: -86px;
     width: 182px;
   }
 
@@ -310,16 +310,14 @@
   }
 
   .news__card-save-wrapper {
-    left: -149px;
+    left: 68px;
     width: 40px;
+    top: 13px;
+    width: 200px;
   }
 
   .news__cards-list-items {
     margin-bottom: 0;
-  }
-
-  .news__card-save {
-    left: 185px;
   }
 
   .news__card-save-signin {
@@ -330,5 +328,16 @@
     top: 0;
     left: -43px;
     width: 126px;
+  }
+
+  .news__card-save {
+    top: 0;
+  }
+
+  .news__card-save-signin {
+    padding: 0 5px 0 5px;
+    left: -86px;
+    top: 0;
+    width: 137px;
   }
 }
