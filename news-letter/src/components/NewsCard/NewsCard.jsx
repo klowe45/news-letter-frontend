@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import "./NewsCard.css";
 import { UserArticleContext } from "../../context/UserArticleContext";
-import { getUserArticles } from "../utils/api";
 
 function NewsCard({
   article,
@@ -14,6 +13,7 @@ function NewsCard({
   const location = useLocation();
   const { savedArticles } = useContext(UserArticleContext);
   const [isClicked, setIsClicked] = useState(false);
+
   const title = article.title || article.image || "No Title";
   const description = article.description || article.text || "No Description";
   const image = article.urlToImage || article.image;
@@ -42,13 +42,12 @@ function NewsCard({
     if (isLoggedIn) {
       isSaved ? setIsClicked(false) : setIsClicked(true);
       handleSaveArticle(article);
-      return;
+    } else {
+      setActiveModal("signin");
     }
-    setActiveModal("signin");
   };
 
   const handleDeleteClick = () => {
-    console.log("Article passed to delete:", article);
     if (!article._id) {
       console.warn("Missing _id! Cannot delete this article.");
       return;
@@ -58,7 +57,7 @@ function NewsCard({
 
   return (
     <div className="news__card-container">
-      <div className="news__card-img_content">
+      <div className="news__card-img-content">
         {location.pathname === "/saved-news" && article.keyword && (
           <div className="news__card-keyword">
             {article.keyword.charAt(0).toUpperCase() + article.keyword.slice(1)}
@@ -69,13 +68,13 @@ function NewsCard({
           {location.pathname === "/" && (
             <div className="news__card-save-wrapper">
               <button
-                className={`news__card_save ${
-                  isSaved ? "news__card_saved news__card_saved-checked" : ""
+                className={`news__card-save ${
+                  isSaved ? "news__card-saved news__card_saved-checked" : ""
                 }`}
                 onClick={handleSaveClick}
               ></button>
               {!isLoggedIn && (
-                <div className="news__card-save_signin">
+                <div className="news__card-save-signin">
                   Sign in to save articles
                 </div>
               )}
@@ -88,7 +87,7 @@ function NewsCard({
                 className="news__card-delete"
                 onClick={handleDeleteClick}
               ></button>
-              <div className="news__card-delete_confirm">Remove from saved</div>
+              <div className="news__card-delete-confirm">Remove from saved</div>
             </div>
           )}
         </div>
@@ -98,7 +97,7 @@ function NewsCard({
 
       <div className="news__card-text">
         <span className="news__card-date">{date}</span>
-        <Link to={link} target="_blank" className="news__card-title_link">
+        <Link to={link} target="_blank" className="news__card-title-link">
           <h2 className="news__card-title">{title}</h2>
         </Link>
         <p className="news__card-description">{description}</p>

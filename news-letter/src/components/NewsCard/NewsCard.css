@@ -8,24 +8,15 @@
   margin: 0;
 }
 
-.news__cards-list_items {
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 19px;
-  margin-bottom: 84px;
-  flex-wrap: wrap;
-}
-
 .news__card-btn {
   display: flex;
-  position: absolute;
+  position: relative;
 }
 
-.news__card_save {
+.news__card-save {
   height: 40px;
   width: 40px;
-  left: 342px;
+  left: 179px;
   top: 19px;
   border: none;
   border-radius: 10px;
@@ -37,11 +28,7 @@
   cursor: pointer;
 }
 
-.news__card_save:hover {
-  height: 40px;
-  width: 40px;
-  left: 342px;
-  top: 19px;
+.news__card-save:hover {
   border: none;
   border-radius: 10px;
   background-image: url("../../assets//save-icon-hover.png");
@@ -51,7 +38,7 @@
   padding: 0;
 }
 
-.news__card_saved {
+.news__card-saved {
   background-image: url("../../assets/save-icon-saved.png");
   cursor: pointer;
 }
@@ -80,7 +67,7 @@
   margin-bottom: 20px;
 }
 
-.news__card-img_content {
+.news__card-img-content {
   position: relative;
 }
 
@@ -95,6 +82,7 @@
   font-weight: 400;
   font-size: 18px;
   opacity: 40%;
+  margin-left: 0;
 }
 
 .news__card-title {
@@ -111,7 +99,7 @@
   cursor: pointer;
 }
 
-.news__card-title_link {
+.news__card-title-link {
   text-decoration: none;
 }
 
@@ -126,6 +114,7 @@
   font-weight: 700;
   font-size: 16px;
   opacity: 40%;
+  margin-left: 0;
 }
 
 .news__card-save-wrapper {
@@ -133,12 +122,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  width: 200px;
 }
 
-.news__card-save_signin {
+.news__card-save-signin {
   position: absolute;
   top: 19px;
-  right: -296px;
+  right: -132px;
   background-color: #fff;
   color: #000;
   font-size: 12px;
@@ -178,10 +168,13 @@
 .news__card-delete-wrapper {
   position: absolute;
   top: 15px;
-  left: 346px;
+  left: 184px;
+  width: 200px;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.news__card-delete_confirm {
+.news__card-delete-confirm {
   background-color: #fff;
   border-radius: 10px;
   border-style: none;
@@ -197,15 +190,15 @@
   visibility: hidden;
   position: absolute;
   top: 0px;
-  right: 45px;
+  left: 25px;
   z-index: 10;
 }
 
-.news__card-delete-wrapper:hover .news__card-delete_confirm {
+.news__card-delete-wrapper:hover .news__card-delete-confirm {
   visibility: visible;
   background-color: #ffffff;
 }
-.news__card-save-wrapper:hover .news__card-save_signin {
+.news__card-save-wrapper:hover .news__card-save-signin {
   visibility: visible;
   background-color: #ffffff;
 }
@@ -249,16 +242,38 @@
     overflow: hidden;
     font-size: 16px;
   }
+
+  .news__card-save {
+    left: 10px;
+  }
+
+  .news__card-save-signin {
+    padding: 0 5px 0 5px;
+    left: -141px;
+    width: 137px;
+  }
+
+  .news__card-delete-wrapper {
+    width: 127px;
+    left: 86px;
+  }
+
+  .news__card-delete-confirm {
+    top: 47px;
+    left: 2px;
+    width: 126px;
+  }
 }
 
 @media screen and (max-width: 320px) {
   .news__card-delete-wrapper {
     top: 15px;
-    left: 220px;
+    left: 147px;
   }
 
-  .news__card-save_signin {
+  .news__card-save-signin {
     right: -180px;
+    width: 182px;
   }
 
   .news__card-container {
@@ -291,14 +306,29 @@
   }
 
   .news__card-source {
-    margin: auto 0 16px 0;
+    margin: 16px 0 16px 0;
   }
 
   .news__card-save-wrapper {
-    left: -114px;
+    left: -149px;
+    width: 40px;
   }
 
-  .news__cards-list_items {
+  .news__cards-list-items {
     margin-bottom: 0;
+  }
+
+  .news__card-save {
+    left: 185px;
+  }
+
+  .news__card-save-signin {
+    right: -437px;
+  }
+
+  .news__card-delete-confirm {
+    top: 0;
+    left: -43px;
+    width: 126px;
   }
 }

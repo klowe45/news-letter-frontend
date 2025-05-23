@@ -4,7 +4,7 @@ import "./About.css";
 
 function About() {
   return (
-    <main className="about">
+    <section className="about">
       <img className="about__author-img" src={authorImg} alt="Author" />
       <div className="about__content">
         <h2 className="about__title">About the author</h2>
@@ -19,7 +19,7 @@ function About() {
           resourcefulness—will be valuable assets to any future employer.
         </p>
       </div>
-    </main>
+    </section>
   );
 }
 

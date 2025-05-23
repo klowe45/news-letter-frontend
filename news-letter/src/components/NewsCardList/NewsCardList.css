@@ -25,11 +25,11 @@
   display: none;
 }
 
-.news__cards-list-preloader_hidden {
+.news__cards-list-preloader-hidden {
   display: none;
 }
 
-.news__cards-list-preloader_text {
+.news__cards-list-preloader-text {
   font-weight: 400;
   line-height: 30px;
   font-size: 26px;
@@ -52,14 +52,14 @@
   font-family: robotoSlab, Arial, sans-serif;
 }
 
-.news__cards-list__title {
+.news__cards-list-title {
   font-weight: 400;
   line-height: 46px;
   font-size: 40px;
   margin: 80px auto 64px 104px;
 }
 
-.news__cards-list_more-btn-signed_in {
+.news__cards-list_more-btn-signed-in {
   border: none;
   background-color: #ffffff;
   font-size: 18px;
@@ -72,7 +72,7 @@
   border-radius: 30px;
 }
 
-.news__cards-list_more-btn-signed_out {
+.news__cards-list_more-btn-signed-out {
   border: none;
   background-color: #e8e8e8;
   font-size: 18px;
@@ -86,21 +86,31 @@
   margin-bottom: 80px;
 }
 
+.news__cards-list-items {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 19px;
+  margin-bottom: 84px;
+  flex-wrap: wrap;
+}
+
 @media screen and (max-width: 768px) {
   .news__cards-list {
     max-width: 768px;
   }
 
-  .news__cards-list__title {
+  .news__cards-list-title {
     margin: 40px auto 32px 40px;
   }
 
-  .news__cards-list_items {
+  .news__cards-list-items {
     max-width: 724px;
-    margin: 0 104px 64px 104px;
+    margin: 0 40px 64px 40px;
+    gap: 8px;
   }
 
-  .news__cards-list_more-btn-signed_in {
+  .news__cards-list_more-btn-signed-in {
     margin: 32px auto 40px auto;
   }
 
@@ -115,26 +125,26 @@
     max-width: 320px;
   }
 
-  .news__cards-list_items {
+  .news__cards-list-items {
     margin: 0;
   }
 
-  .news__cards-list_container {
+  .news__cards-list-container {
     display: flex;
   }
 
-  .news__cards-list__title {
+  .news__cards-list-title {
     margin: 32px 16px 58px 16px;
     font-weight: 400;
     font-size: 30px;
     line-height: 34px;
   }
 
-  .news__card_save {
+  .news__card-save {
     left: 227px;
   }
 
-  .news__cards-list_more-btn-signed_in {
+  .news__cards-list_more-btn-signed-in {
     margin: 16px auto 24px auto;
     padding: 0;
     width: 288px;

@@ -7,7 +7,7 @@ const SavedNewsHeader = ({ savedArticles, keywords }) => {
 
   return (
     <section className="header__saved">
-      <p className="header__saved-title">Saved articles</p>
+      <h1 className="header__saved-title">Saved articles</h1>
       <p className="header__saved-count">
         {currentUser?.username}, you have {savedArticles?.length || 0} saved
         articles

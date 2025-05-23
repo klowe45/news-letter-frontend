@@ -7,8 +7,8 @@ function SavedCardsArray({ handleDeleteArticle, handleSaveArticle }) {
   const { savedArticles } = useContext(UserArticleContext);
 
   return (
-    <div className="saved-news-container">
-      <ul className="saved__cards">
+    <div className="saved__news-container">
+      <ul className="saved__news-list">
         {savedArticles?.map((article) => {
           return (
             <NewsCard

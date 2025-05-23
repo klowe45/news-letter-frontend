@@ -14,7 +14,7 @@ function ModalWithForm({
   hiddenSubmitButton = false, // Fixed default value
 }) {
   return (
-    <div className={`modal ${isOpen ? "modal__opened" : ""}`}>
+    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__content">
         <button className="modal__close" onClick={closeModal} type="button" />
         <form className="modal__form" onSubmit={onSubmit}>

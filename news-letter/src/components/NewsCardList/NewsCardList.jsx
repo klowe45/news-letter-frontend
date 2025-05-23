@@ -63,9 +63,9 @@ function NewsCardList({
 
       {!noNewsDataArray && !isLoading && filteredNewsData.length > 0 && (
         <>
-          <h2 className="news__cards-list__title">Search results</h2>
-          <div className="news__cards-list__container">
-            <ul className="news__cards-list_items">
+          <h2 className="news__cards-list-title">Search results</h2>
+          <div className="news__cards-list-container">
+            <ul className="news__cards-list-items">
               {postedNewsDataItems.map((article, index) => (
                 <NewsCard
                   isLoggedIn={isLoggedIn}
@@ -82,8 +82,8 @@ function NewsCardList({
               onClick={handleClick}
               className={
                 isLoggedIn
-                  ? "news__cards-list_more-btn-signed_in"
-                  : "news__cards-list_more-btn-signed_out"
+                  ? "news__cards-list_more-btn-signed-in"
+                  : "news__cards-list_more-btn-signed-out"
               }
             >
               Show More

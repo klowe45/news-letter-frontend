@@ -220,6 +220,7 @@ function App() {
 
     getNews(searchTerm, API_KEY, getLastWeeksDate(), getTodaysDate())
       .then((data) => {
+        const articles = data.articles.slice(0, 50);
         setIsGoodNewsData(true);
         setNewsData(data.articles.slice(0, 50));
         setNewsData(articles);
