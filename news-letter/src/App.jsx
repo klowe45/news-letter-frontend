@@ -360,6 +360,22 @@ function App() {
     }
   };
 
+  const handleTripleTenClick = () => {
+    try {
+      const newWindow = window.open("https://tripleten.com/", "_blank");
+      if (
+        !newWindow ||
+        newWindow.closed ||
+        typeof newWindow.closed === "undefined"
+      ) {
+        throw new Error("Popup blocked or failed to open");
+      }
+    } catch (error) {
+      console.error("Failed to open tripleTen:", error);
+      alert("Unable to open TripleTen. Please check your browser settings.");
+    }
+  };
+
   /**************************************************************************/
 
   return (
@@ -415,6 +431,7 @@ function App() {
             <Footer
               handleGithubClick={handleGithubClick}
               handleFacebookClick={handleFacebookClick}
+              handleTripleTenClick={handleTripleTenClick}
             />
           </div>
           <SignupModal
