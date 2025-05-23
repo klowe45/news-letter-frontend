@@ -1,7 +1,20 @@
 import React from "react";
 import "./Footer.css";
+import { useLocation, useNavigate } from "react-router-dom";
 
-function Footer({ handleGithubClick, handleFacebookClick }) {
+function Footer({
+  handleGithubClick,
+  handleFacebookClick,
+  handleTripleTenClick,
+}) {
+  const navigate = useNavigate();
+
+  const homeClick = () => {
+    if (location.pathname !== "/") {
+      navigate("/");
+    }
+  };
+
   return (
     <footer className="footer">
       <div className="footer__content">
@@ -9,8 +22,15 @@ function Footer({ handleGithubClick, handleFacebookClick }) {
 
         <div className="footer__text-content">
           <div className="footer__home-tt">
-            <button className="footer__home-btn">Home</button>
-            <p className="footer__school">TripleTen</p>
+            <button className="footer__home-btn" onClick={homeClick}>
+              Home
+            </button>
+            <button
+              className="footer__school-btn"
+              onClick={handleTripleTenClick}
+            >
+              TripleTen
+            </button>
           </div>
 
           <div className="footer__social-buttons">

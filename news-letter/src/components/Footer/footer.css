@@ -38,12 +38,15 @@
   padding: 0 40px 0 0;
 }
 
-.footer__school {
+.footer__school-btn {
   margin-right: 40px;
   font-family: "roboloSlab", Times New Roman, Times, serif;
   font-size: 18px;
   line-height: 24px;
   font-weight: 400;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .footer__github-btn {
