@@ -3,7 +3,7 @@
   flex-direction: column;
   background-color: #ffffff;
   padding-left: 104px;
-  padding-right: 748px;
+  padding-right: auto;
   width: 100%;
 }
 
@@ -11,16 +11,15 @@
   font-weight: 400;
   font-size: 18px;
   opacity: 50%;
-  margin-top: 40px;
-  margin-bottom: 28px;
+  margin: 40px 0 28px 0;
 }
 
 .header__saved-count {
   font-size: 40px;
   font-weight: 400;
   line-height: 46px;
-  margin-top: 0;
-  margin-bottom: 30px;
+
+  margin: 0 0 30px 0;
   width: 400px;
 }
 
@@ -29,7 +28,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
-  margin-bottom: 30px;
+  margin: 0 0 30px 0;
 }
 
 .header__saved-span {
@@ -38,6 +37,25 @@
   font-size: 18px;
   line-height: 24px;
   margin-bottom: 56px;
+}
+
+@media screen and (max-width: 768px) {
+  .header__saved {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding-left: 40px;
+    padding-right: 10px;
+  }
+
+  .header__saved-title {
+    margin: 10px 0 16px 0;
+  }
+
+  .header__saved-count {
+    width: 380px;
+    margin-bottom: 16px;
+  }
 }
 
 @media screen and (max-width: 320px) {

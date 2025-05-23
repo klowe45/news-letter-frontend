@@ -116,6 +116,9 @@
   margin-bottom: 16px;
   padding: 0;
   cursor: pointer;
+  font-family: roboloSlab, "Times New Roman", Times, serif;
+  font-weight: 500;
+  font-size: 18px;
 }
 
 .modal__button-submit-disabled {
@@ -143,6 +146,9 @@
   padding-left: 5px;
   height: 20px;
   cursor: pointer;
+  font-family: roboloSlab, "Times New Roman", Times, serif;
+  font-weight: 400;
+  font-size: 14px;
 }
 
 .modal__other-button-left {
@@ -156,6 +162,13 @@
   justify-content: center;
   width: 100%;
   margin-bottom: 28px;
+}
+
+.modal__or-text {
+  font-family: roboloSlab, "Times New Roman", Times, serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #000000;
 }
 
 @media screen and (max-width: 320px) {

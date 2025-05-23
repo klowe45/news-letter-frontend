@@ -6,9 +6,9 @@
 }
 
 .page {
-  background-color: #f3f3f3;
   max-width: 1440px;
   min-height: 100vh;
+  background-color: #f5f6f7;
 }
 
 .page__content {
@@ -16,6 +16,11 @@
   margin: 0 auto;
   padding: 20px;
   min-height: 100vh;
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 @media screen and (max-width: 320px) {

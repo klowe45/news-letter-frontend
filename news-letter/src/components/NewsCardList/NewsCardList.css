@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   margin-top: 86px;
+  background-color: #f5f6f7;
 }
 
 .news__cards-list-hidden {
@@ -42,7 +43,7 @@
   font-weight: 400;
   line-height: 46px;
   font-size: 40px;
-  margin: 80px auto 64px 64px;
+  margin: 80px auto 64px 104px;
 }
 
 .news__cards-list_more-btn-signed_in {
@@ -83,7 +84,7 @@
 
   .news__cards-list_items {
     max-width: 724px;
-    margin-bottom: 0;
+    margin: 0 104px 64px 104px;
   }
 
   .news__cards-list_more-btn-signed_in {
@@ -94,6 +95,15 @@
 @media screen and (max-width: 320px) {
   .news__cards-lists {
     background-color: #f5f6f7;
+    max-width: 320px;
+  }
+
+  .news__cards-list_items {
+    margin: 0;
+  }
+
+  .news__cards-list_container {
+    display: flex;
   }
 
   .news__cards-list__title {

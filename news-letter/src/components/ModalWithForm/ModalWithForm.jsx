@@ -40,13 +40,12 @@ function ModalWithForm({
                 hiddenSubmitButton ? "modal__other-button-left" : ""
               }`}
             >
-              <p className="modal__or-text">{orText}</p>
               <button
                 type="button"
                 className="modal__button-other"
                 onClick={toggleModal}
               >
-                {buttonOther}
+                <span className="modal__or-text">{orText}</span> {buttonOther}
               </button>
             </div>
           </div>
