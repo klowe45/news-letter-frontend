@@ -36,7 +36,7 @@ function Navigation({
       >
         <p
           className={`header__navi-title ${
-            isSavedNews ? "header__navi-title_black" : ""
+            isSavedNews && !mobileMenuOpen ? "header__navi-title_black" : ""
           }`}
         >
           News Explorer
@@ -58,7 +58,10 @@ function Navigation({
         {!isLoggedIn ? (
           <NavLoggedOut handleSigninClick={handleSigninClick} />
         ) : (
-          <NavLoggedIn handleSignOut={handleSignOut} />
+          <NavLoggedIn
+            handleSignOut={handleSignOut}
+            mobileMenuOpen={mobileMenuOpen}
+          />
         )}
       </div>
 
@@ -69,6 +72,7 @@ function Navigation({
           <MobileDropDown
             handleSigninFromMenu={handleSigninFromMenu}
             isLoggedIn={isLoggedIn}
+            handleSignOut={handleSignOut}
           />
         </>
       )}

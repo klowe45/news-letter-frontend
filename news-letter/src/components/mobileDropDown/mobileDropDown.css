@@ -12,9 +12,19 @@
 
 .mobile__drop_down-home {
   font-size: 18px;
-  line-height: 56px;
   font-weight: 500;
   margin: 22px auto 0 16px;
+  color: #ffffff;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.mobile__drop_down-signout {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 10px auto 0 16px;
   color: #ffffff;
   background: none;
   border: none;
@@ -35,6 +45,10 @@
   width: 288px;
   height: 56px;
   border-radius: 50px;
+}
+
+.mobile__drop_down-signout-disabled {
+  display: none;
 }
 
 @keyframes slideDown {

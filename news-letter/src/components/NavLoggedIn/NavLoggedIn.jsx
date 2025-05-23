@@ -4,7 +4,7 @@ import { CurrentUserContext } from "../../context/CurrentUserContext";
 import loggout from "../../assets/loggout.png";
 import logoutBlack from "../../assets/logout-black.png";
 
-function NavLoggedIn({ handleSignOut }) {
+function NavLoggedIn({ handleSignOut, mobileMenuOpen }) {
   const { currentUser } = useContext(CurrentUserContext);
   const location = useLocation();
   const onSavedPageLocation = location.pathname === "/saved-news";
